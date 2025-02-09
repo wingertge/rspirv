@@ -7,13 +7,13 @@ pub const MAGIC_NUMBER: u32 = 0x07230203;
 pub const MAJOR_VERSION: u8 = 1u8;
 pub const MINOR_VERSION: u8 = 6u8;
 pub const REVISION: u8 = 4u8;
-bitflags! { # [doc = "SPIR-V operand kind: [ImageOperands](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_image_operands_a_image_operands)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct ImageOperands : u32 { const NONE = 0u32 ; const BIAS = 1u32 ; const LOD = 2u32 ; const GRAD = 4u32 ; const CONST_OFFSET = 8u32 ; const OFFSET = 16u32 ; const CONST_OFFSETS = 32u32 ; const SAMPLE = 64u32 ; const MIN_LOD = 128u32 ; const MAKE_TEXEL_AVAILABLE = 256u32 ; const MAKE_TEXEL_AVAILABLE_KHR = 256u32 ; const MAKE_TEXEL_VISIBLE = 512u32 ; const MAKE_TEXEL_VISIBLE_KHR = 512u32 ; const NON_PRIVATE_TEXEL = 1024u32 ; const NON_PRIVATE_TEXEL_KHR = 1024u32 ; const VOLATILE_TEXEL = 2048u32 ; const VOLATILE_TEXEL_KHR = 2048u32 ; const SIGN_EXTEND = 4096u32 ; const ZERO_EXTEND = 8192u32 ; const NONTEMPORAL = 16384u32 ; const OFFSETS = 65536u32 ; } }
-bitflags! { # [doc = "SPIR-V operand kind: [FPFastMathMode](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_fp_fast_math_mode_a_fp_fast_math_mode)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct FPFastMathMode : u32 { const NONE = 0u32 ; const NOT_NAN = 1u32 ; const NOT_INF = 2u32 ; const NSZ = 4u32 ; const ALLOW_RECIP = 8u32 ; const FAST = 16u32 ; const ALLOW_CONTRACT = 65536u32 ; const ALLOW_CONTRACT_FAST_INTEL = 65536u32 ; const ALLOW_REASSOC = 131072u32 ; const ALLOW_REASSOC_INTEL = 131072u32 ; const ALLOW_TRANSFORM = 262144u32 ; } }
+bitflags! { # [doc = "SPIR-V operand kind: [ImageOperands](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_image_operands_a_image_operands)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct ImageOperands : u32 { const NONE = 0u32 ; const BIAS = 1u32 ; const LOD = 2u32 ; const GRAD = 4u32 ; const CONST_OFFSET = 8u32 ; const OFFSET = 16u32 ; const CONST_OFFSETS = 32u32 ; const SAMPLE = 64u32 ; const MIN_LOD = 128u32 ; const MAKE_TEXEL_AVAILABLE = 256u32 ; const MAKE_TEXEL_VISIBLE = 512u32 ; const NON_PRIVATE_TEXEL = 1024u32 ; const VOLATILE_TEXEL = 2048u32 ; const SIGN_EXTEND = 4096u32 ; const ZERO_EXTEND = 8192u32 ; const NONTEMPORAL = 16384u32 ; const OFFSETS = 65536u32 ; } }
+bitflags! { # [doc = "SPIR-V operand kind: [FPFastMathMode](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_fp_fast_math_mode_a_fp_fast_math_mode)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct FPFastMathMode : u32 { const NONE = 0u32 ; const NOT_NAN = 1u32 ; const NOT_INF = 2u32 ; const NSZ = 4u32 ; const ALLOW_RECIP = 8u32 ; const FAST = 16u32 ; const ALLOW_CONTRACT = 65536u32 ; const ALLOW_REASSOC = 131072u32 ; const ALLOW_TRANSFORM = 262144u32 ; } }
 bitflags! { # [doc = "SPIR-V operand kind: [SelectionControl](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_selection_control_a_selection_control)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct SelectionControl : u32 { const NONE = 0u32 ; const FLATTEN = 1u32 ; const DONT_FLATTEN = 2u32 ; } }
 bitflags! { # [doc = "SPIR-V operand kind: [LoopControl](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_loop_control_a_loop_control)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct LoopControl : u32 { const NONE = 0u32 ; const UNROLL = 1u32 ; const DONT_UNROLL = 2u32 ; const DEPENDENCY_INFINITE = 4u32 ; const DEPENDENCY_LENGTH = 8u32 ; const MIN_ITERATIONS = 16u32 ; const MAX_ITERATIONS = 32u32 ; const ITERATION_MULTIPLE = 64u32 ; const PEEL_COUNT = 128u32 ; const PARTIAL_COUNT = 256u32 ; const INITIATION_INTERVAL_INTEL = 65536u32 ; const MAX_CONCURRENCY_INTEL = 131072u32 ; const DEPENDENCY_ARRAY_INTEL = 262144u32 ; const PIPELINE_ENABLE_INTEL = 524288u32 ; const LOOP_COALESCE_INTEL = 1048576u32 ; const MAX_INTERLEAVING_INTEL = 2097152u32 ; const SPECULATED_ITERATIONS_INTEL = 4194304u32 ; const NO_FUSION_INTEL = 8388608u32 ; const LOOP_COUNT_INTEL = 16777216u32 ; const MAX_REINVOCATION_DELAY_INTEL = 33554432u32 ; } }
-bitflags! { # [doc = "SPIR-V operand kind: [FunctionControl](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_function_control_a_function_control)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct FunctionControl : u32 { const NONE = 0u32 ; const INLINE = 1u32 ; const DONT_INLINE = 2u32 ; const PURE = 4u32 ; const CONST = 8u32 ; const OPT_NONE_INTEL = 65536u32 ; } }
-bitflags! { # [doc = "SPIR-V operand kind: [MemorySemantics](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_memory_semantics_a_memory_semantics)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct MemorySemantics : u32 { const RELAXED = 0u32 ; const NONE = 0u32 ; const ACQUIRE = 2u32 ; const RELEASE = 4u32 ; const ACQUIRE_RELEASE = 8u32 ; const SEQUENTIALLY_CONSISTENT = 16u32 ; const UNIFORM_MEMORY = 64u32 ; const SUBGROUP_MEMORY = 128u32 ; const WORKGROUP_MEMORY = 256u32 ; const CROSS_WORKGROUP_MEMORY = 512u32 ; const ATOMIC_COUNTER_MEMORY = 1024u32 ; const IMAGE_MEMORY = 2048u32 ; const OUTPUT_MEMORY = 4096u32 ; const OUTPUT_MEMORY_KHR = 4096u32 ; const MAKE_AVAILABLE = 8192u32 ; const MAKE_AVAILABLE_KHR = 8192u32 ; const MAKE_VISIBLE = 16384u32 ; const MAKE_VISIBLE_KHR = 16384u32 ; const VOLATILE = 32768u32 ; } }
-bitflags! { # [doc = "SPIR-V operand kind: [MemoryAccess](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_memory_access_a_memory_access)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct MemoryAccess : u32 { const NONE = 0u32 ; const VOLATILE = 1u32 ; const ALIGNED = 2u32 ; const NONTEMPORAL = 4u32 ; const MAKE_POINTER_AVAILABLE = 8u32 ; const MAKE_POINTER_AVAILABLE_KHR = 8u32 ; const MAKE_POINTER_VISIBLE = 16u32 ; const MAKE_POINTER_VISIBLE_KHR = 16u32 ; const NON_PRIVATE_POINTER = 32u32 ; const NON_PRIVATE_POINTER_KHR = 32u32 ; const ALIAS_SCOPE_INTEL_MASK = 65536u32 ; const NO_ALIAS_INTEL_MASK = 131072u32 ; } }
+bitflags! { # [doc = "SPIR-V operand kind: [FunctionControl](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_function_control_a_function_control)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct FunctionControl : u32 { const NONE = 0u32 ; const INLINE = 1u32 ; const DONT_INLINE = 2u32 ; const PURE = 4u32 ; const CONST = 8u32 ; const OPT_NONE_EXT = 65536u32 ; } }
+bitflags! { # [doc = "SPIR-V operand kind: [MemorySemantics](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_memory_semantics_a_memory_semantics)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct MemorySemantics : u32 { const RELAXED = 0u32 ; const ACQUIRE = 2u32 ; const RELEASE = 4u32 ; const ACQUIRE_RELEASE = 8u32 ; const SEQUENTIALLY_CONSISTENT = 16u32 ; const UNIFORM_MEMORY = 64u32 ; const SUBGROUP_MEMORY = 128u32 ; const WORKGROUP_MEMORY = 256u32 ; const CROSS_WORKGROUP_MEMORY = 512u32 ; const ATOMIC_COUNTER_MEMORY = 1024u32 ; const IMAGE_MEMORY = 2048u32 ; const OUTPUT_MEMORY = 4096u32 ; const MAKE_AVAILABLE = 8192u32 ; const MAKE_VISIBLE = 16384u32 ; const VOLATILE = 32768u32 ; } }
+bitflags! { # [doc = "SPIR-V operand kind: [MemoryAccess](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_memory_access_a_memory_access)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct MemoryAccess : u32 { const NONE = 0u32 ; const VOLATILE = 1u32 ; const ALIGNED = 2u32 ; const NONTEMPORAL = 4u32 ; const MAKE_POINTER_AVAILABLE = 8u32 ; const MAKE_POINTER_VISIBLE = 16u32 ; const NON_PRIVATE_POINTER = 32u32 ; const ALIAS_SCOPE_INTEL_MASK = 65536u32 ; const NO_ALIAS_INTEL_MASK = 131072u32 ; } }
 bitflags! { # [doc = "SPIR-V operand kind: [KernelProfilingInfo](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_kernel_profiling_info_a_kernel_profiling_info)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct KernelProfilingInfo : u32 { const NONE = 0u32 ; const CMD_EXEC_TIME = 1u32 ; } }
 bitflags! { # [doc = "SPIR-V operand kind: [RayFlags](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_ray_flags_a_ray_flags)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct RayFlags : u32 { const NONE_KHR = 0u32 ; const OPAQUE_KHR = 1u32 ; const NO_OPAQUE_KHR = 2u32 ; const TERMINATE_ON_FIRST_HIT_KHR = 4u32 ; const SKIP_CLOSEST_HIT_SHADER_KHR = 8u32 ; const CULL_BACK_FACING_TRIANGLES_KHR = 16u32 ; const CULL_FRONT_FACING_TRIANGLES_KHR = 32u32 ; const CULL_OPAQUE_KHR = 64u32 ; const CULL_NO_OPAQUE_KHR = 128u32 ; const SKIP_TRIANGLES_KHR = 256u32 ; const SKIP_AAB_BS_KHR = 512u32 ; const FORCE_OPACITY_MICROMAP2_STATE_EXT = 1024u32 ; } }
 bitflags! { # [doc = "SPIR-V operand kind: [FragmentShadingRate](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_fragment_shading_rate_a_fragment_shading_rate)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct FragmentShadingRate : u32 { const VERTICAL2_PIXELS = 1u32 ; const VERTICAL4_PIXELS = 2u32 ; const HORIZONTAL2_PIXELS = 4u32 ; const HORIZONTAL4_PIXELS = 8u32 ; } }
@@ -38,11 +38,12 @@ pub enum SourceLanguage {
     WGSL = 10u32,
     Slang = 11u32,
     Zig = 12u32,
+    Rust = 13u32,
 }
 impl SourceLanguage {
     pub fn from_u32(n: u32) -> Option<Self> {
         Some(match n {
-            0u32..=12u32 => unsafe { core::mem::transmute::<u32, SourceLanguage>(n) },
+            0u32..=13u32 => unsafe { core::mem::transmute::<u32, SourceLanguage>(n) },
             _ => return None,
         })
     }
@@ -66,6 +67,7 @@ impl core::str::FromStr for SourceLanguage {
             "WGSL" => Self::WGSL,
             "Slang" => Self::Slang,
             "Zig" => Self::Zig,
+            "Rust" => Self::Rust,
             _ => return Err(()),
         })
     }
@@ -107,14 +109,7 @@ impl ExecutionModel {
     }
 }
 #[allow(non_upper_case_globals)]
-impl ExecutionModel {
-    pub const RayGenerationNV: Self = Self::RayGenerationKHR;
-    pub const IntersectionNV: Self = Self::IntersectionKHR;
-    pub const AnyHitNV: Self = Self::AnyHitKHR;
-    pub const ClosestHitNV: Self = Self::ClosestHitKHR;
-    pub const MissNV: Self = Self::MissKHR;
-    pub const CallableNV: Self = Self::CallableKHR;
-}
+impl ExecutionModel {}
 impl core::str::FromStr for ExecutionModel {
     type Err = ();
     fn from_str(s: &str) -> Result<Self, Self::Err> {
@@ -129,17 +124,11 @@ impl core::str::FromStr for ExecutionModel {
             "TaskNV" => Self::TaskNV,
             "MeshNV" => Self::MeshNV,
             "RayGenerationKHR" => Self::RayGenerationKHR,
-            "RayGenerationNV" => Self::RayGenerationKHR,
             "IntersectionKHR" => Self::IntersectionKHR,
-            "IntersectionNV" => Self::IntersectionKHR,
             "AnyHitKHR" => Self::AnyHitKHR,
-            "AnyHitNV" => Self::AnyHitKHR,
             "ClosestHitKHR" => Self::ClosestHitKHR,
-            "ClosestHitNV" => Self::ClosestHitKHR,
             "MissKHR" => Self::MissKHR,
-            "MissNV" => Self::MissKHR,
             "CallableKHR" => Self::CallableKHR,
-            "CallableNV" => Self::CallableKHR,
             "TaskEXT" => Self::TaskEXT,
             "MeshEXT" => Self::MeshEXT,
             _ => return Err(()),
@@ -168,9 +157,7 @@ impl AddressingModel {
     }
 }
 #[allow(non_upper_case_globals)]
-impl AddressingModel {
-    pub const PhysicalStorageBuffer64EXT: Self = Self::PhysicalStorageBuffer64;
-}
+impl AddressingModel {}
 impl core::str::FromStr for AddressingModel {
     type Err = ();
     fn from_str(s: &str) -> Result<Self, Self::Err> {
@@ -179,7 +166,6 @@ impl core::str::FromStr for AddressingModel {
             "Physical32" => Self::Physical32,
             "Physical64" => Self::Physical64,
             "PhysicalStorageBuffer64" => Self::PhysicalStorageBuffer64,
-            "PhysicalStorageBuffer64EXT" => Self::PhysicalStorageBuffer64,
             _ => return Err(()),
         })
     }
@@ -205,9 +191,7 @@ impl MemoryModel {
     }
 }
 #[allow(non_upper_case_globals)]
-impl MemoryModel {
-    pub const VulkanKHR: Self = Self::Vulkan;
-}
+impl MemoryModel {}
 impl core::str::FromStr for MemoryModel {
     type Err = ();
     fn from_str(s: &str) -> Result<Self, Self::Err> {
@@ -216,7 +200,6 @@ impl core::str::FromStr for MemoryModel {
             "GLSL450" => Self::GLSL450,
             "OpenCL" => Self::OpenCL,
             "Vulkan" => Self::Vulkan,
-            "VulkanKHR" => Self::Vulkan,
             _ => return Err(()),
         })
     }
@@ -279,6 +262,7 @@ pub enum ExecutionMode {
     EarlyAndLateFragmentTestsAMD = 5017u32,
     StencilRefReplacingEXT = 5027u32,
     CoalescingAMDX = 5069u32,
+    IsApiEntryAMDX = 5070u32,
     MaxNodeRecursionAMDX = 5071u32,
     StaticNumWorkgroupsAMDX = 5072u32,
     ShaderIndexAMDX = 5073u32,
@@ -291,6 +275,7 @@ pub enum ExecutionMode {
     StencilRefLessBackAMD = 5084u32,
     QuadDerivativesKHR = 5088u32,
     RequireFullQuadsKHR = 5089u32,
+    SharesInputWithAMDX = 5102u32,
     OutputLinesEXT = 5269u32,
     OutputPrimitivesEXT = 5270u32,
     DerivativeGroupQuadsKHR = 5289u32,
@@ -333,11 +318,11 @@ impl ExecutionMode {
             4459u32..=4463u32 => unsafe { core::mem::transmute::<u32, ExecutionMode>(n) },
             5017u32 => unsafe { core::mem::transmute::<u32, ExecutionMode>(5017u32) },
             5027u32 => unsafe { core::mem::transmute::<u32, ExecutionMode>(5027u32) },
-            5069u32 => unsafe { core::mem::transmute::<u32, ExecutionMode>(5069u32) },
-            5071u32..=5073u32 => unsafe { core::mem::transmute::<u32, ExecutionMode>(n) },
+            5069u32..=5073u32 => unsafe { core::mem::transmute::<u32, ExecutionMode>(n) },
             5077u32 => unsafe { core::mem::transmute::<u32, ExecutionMode>(5077u32) },
             5079u32..=5084u32 => unsafe { core::mem::transmute::<u32, ExecutionMode>(n) },
             5088u32..=5089u32 => unsafe { core::mem::transmute::<u32, ExecutionMode>(n) },
+            5102u32 => unsafe { core::mem::transmute::<u32, ExecutionMode>(5102u32) },
             5269u32..=5270u32 => unsafe { core::mem::transmute::<u32, ExecutionMode>(n) },
             5289u32..=5290u32 => unsafe { core::mem::transmute::<u32, ExecutionMode>(n) },
             5298u32 => unsafe { core::mem::transmute::<u32, ExecutionMode>(5298u32) },
@@ -357,13 +342,7 @@ impl ExecutionMode {
     }
 }
 #[allow(non_upper_case_globals)]
-impl ExecutionMode {
-    pub const OutputLinesNV: Self = Self::OutputLinesEXT;
-    pub const OutputPrimitivesNV: Self = Self::OutputPrimitivesEXT;
-    pub const DerivativeGroupQuadsNV: Self = Self::DerivativeGroupQuadsKHR;
-    pub const DerivativeGroupLinearNV: Self = Self::DerivativeGroupLinearKHR;
-    pub const OutputTrianglesNV: Self = Self::OutputTrianglesEXT;
-}
+impl ExecutionMode {}
 impl core::str::FromStr for ExecutionMode {
     type Err = ();
     fn from_str(s: &str) -> Result<Self, Self::Err> {
@@ -419,6 +398,7 @@ impl core::str::FromStr for ExecutionMode {
             "EarlyAndLateFragmentTestsAMD" => Self::EarlyAndLateFragmentTestsAMD,
             "StencilRefReplacingEXT" => Self::StencilRefReplacingEXT,
             "CoalescingAMDX" => Self::CoalescingAMDX,
+            "IsApiEntryAMDX" => Self::IsApiEntryAMDX,
             "MaxNodeRecursionAMDX" => Self::MaxNodeRecursionAMDX,
             "StaticNumWorkgroupsAMDX" => Self::StaticNumWorkgroupsAMDX,
             "ShaderIndexAMDX" => Self::ShaderIndexAMDX,
@@ -431,16 +411,12 @@ impl core::str::FromStr for ExecutionMode {
             "StencilRefLessBackAMD" => Self::StencilRefLessBackAMD,
             "QuadDerivativesKHR" => Self::QuadDerivativesKHR,
             "RequireFullQuadsKHR" => Self::RequireFullQuadsKHR,
+            "SharesInputWithAMDX" => Self::SharesInputWithAMDX,
             "OutputLinesEXT" => Self::OutputLinesEXT,
-            "OutputLinesNV" => Self::OutputLinesEXT,
             "OutputPrimitivesEXT" => Self::OutputPrimitivesEXT,
-            "OutputPrimitivesNV" => Self::OutputPrimitivesEXT,
             "DerivativeGroupQuadsKHR" => Self::DerivativeGroupQuadsKHR,
-            "DerivativeGroupQuadsNV" => Self::DerivativeGroupQuadsKHR,
             "DerivativeGroupLinearKHR" => Self::DerivativeGroupLinearKHR,
-            "DerivativeGroupLinearNV" => Self::DerivativeGroupLinearKHR,
             "OutputTrianglesEXT" => Self::OutputTrianglesEXT,
-            "OutputTrianglesNV" => Self::OutputTrianglesEXT,
             "PixelInterlockOrderedEXT" => Self::PixelInterlockOrderedEXT,
             "PixelInterlockUnorderedEXT" => Self::PixelInterlockUnorderedEXT,
             "SampleInterlockOrderedEXT" => Self::SampleInterlockOrderedEXT,
@@ -491,7 +467,6 @@ pub enum StorageClass {
     StorageBuffer = 12u32,
     TileImageEXT = 4172u32,
     NodePayloadAMDX = 5068u32,
-    NodeOutputPayloadAMDX = 5076u32,
     CallableDataKHR = 5328u32,
     IncomingCallableDataKHR = 5329u32,
     RayPayloadKHR = 5338u32,
@@ -511,7 +486,6 @@ impl StorageClass {
             0u32..=12u32 => unsafe { core::mem::transmute::<u32, StorageClass>(n) },
             4172u32 => unsafe { core::mem::transmute::<u32, StorageClass>(4172u32) },
             5068u32 => unsafe { core::mem::transmute::<u32, StorageClass>(5068u32) },
-            5076u32 => unsafe { core::mem::transmute::<u32, StorageClass>(5076u32) },
             5328u32..=5329u32 => unsafe { core::mem::transmute::<u32, StorageClass>(n) },
             5338u32..=5339u32 => unsafe { core::mem::transmute::<u32, StorageClass>(n) },
             5342u32..=5343u32 => unsafe { core::mem::transmute::<u32, StorageClass>(n) },
@@ -525,15 +499,7 @@ impl StorageClass {
     }
 }
 #[allow(non_upper_case_globals)]
-impl StorageClass {
-    pub const CallableDataNV: Self = Self::CallableDataKHR;
-    pub const IncomingCallableDataNV: Self = Self::IncomingCallableDataKHR;
-    pub const RayPayloadNV: Self = Self::RayPayloadKHR;
-    pub const HitAttributeNV: Self = Self::HitAttributeKHR;
-    pub const IncomingRayPayloadNV: Self = Self::IncomingRayPayloadKHR;
-    pub const ShaderRecordBufferNV: Self = Self::ShaderRecordBufferKHR;
-    pub const PhysicalStorageBufferEXT: Self = Self::PhysicalStorageBuffer;
-}
+impl StorageClass {}
 impl core::str::FromStr for StorageClass {
     type Err = ();
     fn from_str(s: &str) -> Result<Self, Self::Err> {
@@ -553,21 +519,13 @@ impl core::str::FromStr for StorageClass {
             "StorageBuffer" => Self::StorageBuffer,
             "TileImageEXT" => Self::TileImageEXT,
             "NodePayloadAMDX" => Self::NodePayloadAMDX,
-            "NodeOutputPayloadAMDX" => Self::NodeOutputPayloadAMDX,
             "CallableDataKHR" => Self::CallableDataKHR,
-            "CallableDataNV" => Self::CallableDataKHR,
             "IncomingCallableDataKHR" => Self::IncomingCallableDataKHR,
-            "IncomingCallableDataNV" => Self::IncomingCallableDataKHR,
             "RayPayloadKHR" => Self::RayPayloadKHR,
-            "RayPayloadNV" => Self::RayPayloadKHR,
             "HitAttributeKHR" => Self::HitAttributeKHR,
-            "HitAttributeNV" => Self::HitAttributeKHR,
             "IncomingRayPayloadKHR" => Self::IncomingRayPayloadKHR,
-            "IncomingRayPayloadNV" => Self::IncomingRayPayloadKHR,
             "ShaderRecordBufferKHR" => Self::ShaderRecordBufferKHR,
-            "ShaderRecordBufferNV" => Self::ShaderRecordBufferKHR,
             "PhysicalStorageBuffer" => Self::PhysicalStorageBuffer,
-            "PhysicalStorageBufferEXT" => Self::PhysicalStorageBuffer,
             "HitObjectAttributeNV" => Self::HitObjectAttributeNV,
             "TaskPayloadWorkgroupEXT" => Self::TaskPayloadWorkgroupEXT,
             "CodeSectionINTEL" => Self::CodeSectionINTEL,
@@ -1306,6 +1264,10 @@ pub enum Decoration {
     NodeMaxPayloadsAMDX = 5020u32,
     TrackFinishWritingAMDX = 5078u32,
     PayloadNodeNameAMDX = 5091u32,
+    PayloadNodeBaseIndexAMDX = 5098u32,
+    PayloadNodeSparseArrayAMDX = 5099u32,
+    PayloadNodeArraySizeAMDX = 5100u32,
+    PayloadDispatchIndirectAMDX = 5105u32,
     OverrideCoverageNV = 5248u32,
     PassthroughNV = 5250u32,
     ViewportRelativeNV = 5252u32,
@@ -1400,6 +1362,8 @@ impl Decoration {
             5019u32..=5020u32 => unsafe { core::mem::transmute::<u32, Decoration>(n) },
             5078u32 => unsafe { core::mem::transmute::<u32, Decoration>(5078u32) },
             5091u32 => unsafe { core::mem::transmute::<u32, Decoration>(5091u32) },
+            5098u32..=5100u32 => unsafe { core::mem::transmute::<u32, Decoration>(n) },
+            5105u32 => unsafe { core::mem::transmute::<u32, Decoration>(5105u32) },
             5248u32 => unsafe { core::mem::transmute::<u32, Decoration>(5248u32) },
             5250u32 => unsafe { core::mem::transmute::<u32, Decoration>(5250u32) },
             5252u32 => unsafe { core::mem::transmute::<u32, Decoration>(5252u32) },
@@ -1442,15 +1406,7 @@ impl Decoration {
     }
 }
 #[allow(non_upper_case_globals)]
-impl Decoration {
-    pub const PerPrimitiveNV: Self = Self::PerPrimitiveEXT;
-    pub const PerVertexNV: Self = Self::PerVertexKHR;
-    pub const NonUniformEXT: Self = Self::NonUniform;
-    pub const RestrictPointerEXT: Self = Self::RestrictPointer;
-    pub const AliasedPointerEXT: Self = Self::AliasedPointer;
-    pub const HlslCounterBufferGOOGLE: Self = Self::CounterBuffer;
-    pub const HlslSemanticGOOGLE: Self = Self::UserSemantic;
-}
+impl Decoration {}
 impl core::str::FromStr for Decoration {
     type Err = ();
     fn from_str(s: &str) -> Result<Self, Self::Err> {
@@ -1512,22 +1468,21 @@ impl core::str::FromStr for Decoration {
             "NodeMaxPayloadsAMDX" => Self::NodeMaxPayloadsAMDX,
             "TrackFinishWritingAMDX" => Self::TrackFinishWritingAMDX,
             "PayloadNodeNameAMDX" => Self::PayloadNodeNameAMDX,
+            "PayloadNodeBaseIndexAMDX" => Self::PayloadNodeBaseIndexAMDX,
+            "PayloadNodeSparseArrayAMDX" => Self::PayloadNodeSparseArrayAMDX,
+            "PayloadNodeArraySizeAMDX" => Self::PayloadNodeArraySizeAMDX,
+            "PayloadDispatchIndirectAMDX" => Self::PayloadDispatchIndirectAMDX,
             "OverrideCoverageNV" => Self::OverrideCoverageNV,
             "PassthroughNV" => Self::PassthroughNV,
             "ViewportRelativeNV" => Self::ViewportRelativeNV,
             "SecondaryViewportRelativeNV" => Self::SecondaryViewportRelativeNV,
             "PerPrimitiveEXT" => Self::PerPrimitiveEXT,
-            "PerPrimitiveNV" => Self::PerPrimitiveEXT,
             "PerViewNV" => Self::PerViewNV,
             "PerTaskNV" => Self::PerTaskNV,
             "PerVertexKHR" => Self::PerVertexKHR,
-            "PerVertexNV" => Self::PerVertexKHR,
             "NonUniform" => Self::NonUniform,
-            "NonUniformEXT" => Self::NonUniform,
             "RestrictPointer" => Self::RestrictPointer,
-            "RestrictPointerEXT" => Self::RestrictPointer,
             "AliasedPointer" => Self::AliasedPointer,
-            "AliasedPointerEXT" => Self::AliasedPointer,
             "HitObjectShaderRecordBufferNV" => Self::HitObjectShaderRecordBufferNV,
             "BindlessSamplerNV" => Self::BindlessSamplerNV,
             "BindlessImageNV" => Self::BindlessImageNV,
@@ -1543,9 +1498,7 @@ impl core::str::FromStr for Decoration {
             "StackCallINTEL" => Self::StackCallINTEL,
             "GlobalVariableOffsetINTEL" => Self::GlobalVariableOffsetINTEL,
             "CounterBuffer" => Self::CounterBuffer,
-            "HlslCounterBufferGOOGLE" => Self::CounterBuffer,
             "UserSemantic" => Self::UserSemantic,
-            "HlslSemanticGOOGLE" => Self::UserSemantic,
             "UserTypeGOOGLE" => Self::UserTypeGOOGLE,
             "FunctionRoundingModeINTEL" => Self::FunctionRoundingModeINTEL,
             "FunctionDenormModeINTEL" => Self::FunctionDenormModeINTEL,
@@ -1677,7 +1630,7 @@ pub enum BuiltIn {
     BaryCoordSmoothSampleAMD = 4997u32,
     BaryCoordPullModelAMD = 4998u32,
     FragStencilRefEXT = 5014u32,
-    CoalescedInputCountAMDX = 5021u32,
+    RemainingRecursionLevelsAMDX = 5021u32,
     ShaderIndexAMDX = 5073u32,
     ViewportMaskNV = 5253u32,
     SecondaryPositionNV = 5257u32,
@@ -1720,12 +1673,19 @@ pub enum BuiltIn {
     HitMicroTriangleVertexBarycentricsNV = 5344u32,
     IncomingRayFlagsKHR = 5351u32,
     RayGeometryIndexKHR = 5352u32,
+    HitIsSphereNV = 5359u32,
+    HitIsLSSNV = 5360u32,
+    HitSpherePositionNV = 5361u32,
     WarpsPerSMNV = 5374u32,
     SMCountNV = 5375u32,
     WarpIDNV = 5376u32,
     SMIDNV = 5377u32,
+    HitLSSPositionsNV = 5396u32,
     HitKindFrontFacingMicroTriangleNV = 5405u32,
     HitKindBackFacingMicroTriangleNV = 5406u32,
+    HitSphereRadiusNV = 5420u32,
+    HitLSSRadiiNV = 5421u32,
+    ClusterIDNV = 5436u32,
     CullMaskKHR = 6021u32,
 }
 impl BuiltIn {
@@ -1759,38 +1719,19 @@ impl BuiltIn {
             5337u32 => unsafe { core::mem::transmute::<u32, BuiltIn>(5337u32) },
             5344u32 => unsafe { core::mem::transmute::<u32, BuiltIn>(5344u32) },
             5351u32..=5352u32 => unsafe { core::mem::transmute::<u32, BuiltIn>(n) },
+            5359u32..=5361u32 => unsafe { core::mem::transmute::<u32, BuiltIn>(n) },
             5374u32..=5377u32 => unsafe { core::mem::transmute::<u32, BuiltIn>(n) },
+            5396u32 => unsafe { core::mem::transmute::<u32, BuiltIn>(5396u32) },
             5405u32..=5406u32 => unsafe { core::mem::transmute::<u32, BuiltIn>(n) },
+            5420u32..=5421u32 => unsafe { core::mem::transmute::<u32, BuiltIn>(n) },
+            5436u32 => unsafe { core::mem::transmute::<u32, BuiltIn>(5436u32) },
             6021u32 => unsafe { core::mem::transmute::<u32, BuiltIn>(6021u32) },
             _ => return None,
         })
     }
 }
 #[allow(non_upper_case_globals)]
-impl BuiltIn {
-    pub const SubgroupEqMaskKHR: Self = Self::SubgroupEqMask;
-    pub const SubgroupGeMaskKHR: Self = Self::SubgroupGeMask;
-    pub const SubgroupGtMaskKHR: Self = Self::SubgroupGtMask;
-    pub const SubgroupLeMaskKHR: Self = Self::SubgroupLeMask;
-    pub const SubgroupLtMaskKHR: Self = Self::SubgroupLtMask;
-    pub const BaryCoordNV: Self = Self::BaryCoordKHR;
-    pub const BaryCoordNoPerspNV: Self = Self::BaryCoordNoPerspKHR;
-    pub const FragmentSizeNV: Self = Self::FragSizeEXT;
-    pub const InvocationsPerPixelNV: Self = Self::FragInvocationCountEXT;
-    pub const LaunchIdNV: Self = Self::LaunchIdKHR;
-    pub const LaunchSizeNV: Self = Self::LaunchSizeKHR;
-    pub const WorldRayOriginNV: Self = Self::WorldRayOriginKHR;
-    pub const WorldRayDirectionNV: Self = Self::WorldRayDirectionKHR;
-    pub const ObjectRayOriginNV: Self = Self::ObjectRayOriginKHR;
-    pub const ObjectRayDirectionNV: Self = Self::ObjectRayDirectionKHR;
-    pub const RayTminNV: Self = Self::RayTminKHR;
-    pub const RayTmaxNV: Self = Self::RayTmaxKHR;
-    pub const InstanceCustomIndexNV: Self = Self::InstanceCustomIndexKHR;
-    pub const ObjectToWorldNV: Self = Self::ObjectToWorldKHR;
-    pub const WorldToObjectNV: Self = Self::WorldToObjectKHR;
-    pub const HitKindNV: Self = Self::HitKindKHR;
-    pub const IncomingRayFlagsNV: Self = Self::IncomingRayFlagsKHR;
-}
+impl BuiltIn {}
 impl core::str::FromStr for BuiltIn {
     type Err = ();
     fn from_str(s: &str) -> Result<Self, Self::Err> {
@@ -1842,15 +1783,10 @@ impl core::str::FromStr for BuiltIn {
             "WarpIDARM" => Self::WarpIDARM,
             "WarpMaxIDARM" => Self::WarpMaxIDARM,
             "SubgroupEqMask" => Self::SubgroupEqMask,
-            "SubgroupEqMaskKHR" => Self::SubgroupEqMask,
             "SubgroupGeMask" => Self::SubgroupGeMask,
-            "SubgroupGeMaskKHR" => Self::SubgroupGeMask,
             "SubgroupGtMask" => Self::SubgroupGtMask,
-            "SubgroupGtMaskKHR" => Self::SubgroupGtMask,
             "SubgroupLeMask" => Self::SubgroupLeMask,
-            "SubgroupLeMaskKHR" => Self::SubgroupLeMask,
             "SubgroupLtMask" => Self::SubgroupLtMask,
-            "SubgroupLtMaskKHR" => Self::SubgroupLtMask,
             "BaseVertex" => Self::BaseVertex,
             "BaseInstance" => Self::BaseInstance,
             "DrawIndex" => Self::DrawIndex,
@@ -1866,7 +1802,7 @@ impl core::str::FromStr for BuiltIn {
             "BaryCoordSmoothSampleAMD" => Self::BaryCoordSmoothSampleAMD,
             "BaryCoordPullModelAMD" => Self::BaryCoordPullModelAMD,
             "FragStencilRefEXT" => Self::FragStencilRefEXT,
-            "CoalescedInputCountAMDX" => Self::CoalescedInputCountAMDX,
+            "RemainingRecursionLevelsAMDX" => Self::RemainingRecursionLevelsAMDX,
             "ShaderIndexAMDX" => Self::ShaderIndexAMDX,
             "ViewportMaskNV" => Self::ViewportMaskNV,
             "SecondaryPositionNV" => Self::SecondaryPositionNV,
@@ -1883,55 +1819,45 @@ impl core::str::FromStr for BuiltIn {
             "MeshViewCountNV" => Self::MeshViewCountNV,
             "MeshViewIndicesNV" => Self::MeshViewIndicesNV,
             "BaryCoordKHR" => Self::BaryCoordKHR,
-            "BaryCoordNV" => Self::BaryCoordKHR,
             "BaryCoordNoPerspKHR" => Self::BaryCoordNoPerspKHR,
-            "BaryCoordNoPerspNV" => Self::BaryCoordNoPerspKHR,
             "FragSizeEXT" => Self::FragSizeEXT,
-            "FragmentSizeNV" => Self::FragSizeEXT,
             "FragInvocationCountEXT" => Self::FragInvocationCountEXT,
-            "InvocationsPerPixelNV" => Self::FragInvocationCountEXT,
             "PrimitivePointIndicesEXT" => Self::PrimitivePointIndicesEXT,
             "PrimitiveLineIndicesEXT" => Self::PrimitiveLineIndicesEXT,
             "PrimitiveTriangleIndicesEXT" => Self::PrimitiveTriangleIndicesEXT,
             "CullPrimitiveEXT" => Self::CullPrimitiveEXT,
             "LaunchIdKHR" => Self::LaunchIdKHR,
-            "LaunchIdNV" => Self::LaunchIdKHR,
             "LaunchSizeKHR" => Self::LaunchSizeKHR,
-            "LaunchSizeNV" => Self::LaunchSizeKHR,
             "WorldRayOriginKHR" => Self::WorldRayOriginKHR,
-            "WorldRayOriginNV" => Self::WorldRayOriginKHR,
             "WorldRayDirectionKHR" => Self::WorldRayDirectionKHR,
-            "WorldRayDirectionNV" => Self::WorldRayDirectionKHR,
             "ObjectRayOriginKHR" => Self::ObjectRayOriginKHR,
-            "ObjectRayOriginNV" => Self::ObjectRayOriginKHR,
             "ObjectRayDirectionKHR" => Self::ObjectRayDirectionKHR,
-            "ObjectRayDirectionNV" => Self::ObjectRayDirectionKHR,
             "RayTminKHR" => Self::RayTminKHR,
-            "RayTminNV" => Self::RayTminKHR,
             "RayTmaxKHR" => Self::RayTmaxKHR,
-            "RayTmaxNV" => Self::RayTmaxKHR,
             "InstanceCustomIndexKHR" => Self::InstanceCustomIndexKHR,
-            "InstanceCustomIndexNV" => Self::InstanceCustomIndexKHR,
             "ObjectToWorldKHR" => Self::ObjectToWorldKHR,
-            "ObjectToWorldNV" => Self::ObjectToWorldKHR,
             "WorldToObjectKHR" => Self::WorldToObjectKHR,
-            "WorldToObjectNV" => Self::WorldToObjectKHR,
             "HitTNV" => Self::HitTNV,
             "HitKindKHR" => Self::HitKindKHR,
-            "HitKindNV" => Self::HitKindKHR,
             "CurrentRayTimeNV" => Self::CurrentRayTimeNV,
             "HitTriangleVertexPositionsKHR" => Self::HitTriangleVertexPositionsKHR,
             "HitMicroTriangleVertexPositionsNV" => Self::HitMicroTriangleVertexPositionsNV,
             "HitMicroTriangleVertexBarycentricsNV" => Self::HitMicroTriangleVertexBarycentricsNV,
             "IncomingRayFlagsKHR" => Self::IncomingRayFlagsKHR,
-            "IncomingRayFlagsNV" => Self::IncomingRayFlagsKHR,
             "RayGeometryIndexKHR" => Self::RayGeometryIndexKHR,
+            "HitIsSphereNV" => Self::HitIsSphereNV,
+            "HitIsLSSNV" => Self::HitIsLSSNV,
+            "HitSpherePositionNV" => Self::HitSpherePositionNV,
             "WarpsPerSMNV" => Self::WarpsPerSMNV,
             "SMCountNV" => Self::SMCountNV,
             "WarpIDNV" => Self::WarpIDNV,
             "SMIDNV" => Self::SMIDNV,
+            "HitLSSPositionsNV" => Self::HitLSSPositionsNV,
             "HitKindFrontFacingMicroTriangleNV" => Self::HitKindFrontFacingMicroTriangleNV,
             "HitKindBackFacingMicroTriangleNV" => Self::HitKindBackFacingMicroTriangleNV,
+            "HitSphereRadiusNV" => Self::HitSphereRadiusNV,
+            "HitLSSRadiiNV" => Self::HitLSSRadiiNV,
+            "ClusterIDNV" => Self::ClusterIDNV,
             "CullMaskKHR" => Self::CullMaskKHR,
             _ => return Err(()),
         })
@@ -1961,9 +1887,7 @@ impl Scope {
     }
 }
 #[allow(non_upper_case_globals)]
-impl Scope {
-    pub const QueueFamilyKHR: Self = Self::QueueFamily;
-}
+impl Scope {}
 impl core::str::FromStr for Scope {
     type Err = ();
     fn from_str(s: &str) -> Result<Self, Self::Err> {
@@ -1974,7 +1898,6 @@ impl core::str::FromStr for Scope {
             "Subgroup" => Self::Subgroup,
             "Invocation" => Self::Invocation,
             "QueueFamily" => Self::QueueFamily,
-            "QueueFamilyKHR" => Self::QueueFamily,
             "ShaderCallKHR" => Self::ShaderCallKHR,
             _ => return Err(()),
         })
@@ -2223,9 +2146,20 @@ pub enum Capability {
     ShaderInvocationReorderNV = 5383u32,
     BindlessTextureNV = 5390u32,
     RayQueryPositionFetchKHR = 5391u32,
+    CooperativeVectorNV = 5394u32,
     AtomicFloat16VectorNV = 5404u32,
     RayTracingDisplacementMicromapNV = 5409u32,
     RawAccessChainsNV = 5414u32,
+    RayTracingSpheresGeometryNV = 5418u32,
+    RayTracingLinearSweptSpheresGeometryNV = 5419u32,
+    CooperativeMatrixReductionsNV = 5430u32,
+    CooperativeMatrixConversionsNV = 5431u32,
+    CooperativeMatrixPerElementOperationsNV = 5432u32,
+    CooperativeMatrixTensorAddressingNV = 5433u32,
+    CooperativeMatrixBlockLoadsNV = 5434u32,
+    CooperativeVectorTrainingNV = 5435u32,
+    RayTracingClusterAccelerationStructureNV = 5437u32,
+    TensorAddressingNV = 5439u32,
     SubgroupShuffleINTEL = 5568u32,
     SubgroupBufferBlockIOINTEL = 5569u32,
     SubgroupImageBlockIOINTEL = 5570u32,
@@ -2281,11 +2215,12 @@ pub enum Capability {
     AtomicFloat32AddEXT = 6033u32,
     AtomicFloat64AddEXT = 6034u32,
     LongCompositesINTEL = 6089u32,
-    OptNoneINTEL = 6094u32,
+    OptNoneEXT = 6094u32,
     AtomicFloat16AddEXT = 6095u32,
     DebugInfoModuleINTEL = 6114u32,
     BFloat16ConversionINTEL = 6115u32,
     SplitBarrierINTEL = 6141u32,
+    ArithmeticFenceEXT = 6144u32,
     FPGAClusterAttributesV2INTEL = 6150u32,
     FPGAKernelAttributesv2INTEL = 6161u32,
     FPMaxErrorINTEL = 6169u32,
@@ -2294,6 +2229,10 @@ pub enum Capability {
     GlobalVariableHostAccessINTEL = 6187u32,
     GlobalVariableFPGADecorationsINTEL = 6189u32,
     SubgroupBufferPrefetchINTEL = 6220u32,
+    Subgroup2DBlockIOINTEL = 6228u32,
+    Subgroup2DBlockTransformINTEL = 6229u32,
+    Subgroup2DBlockTransposeINTEL = 6230u32,
+    SubgroupMatrixMultiplyAccumulateINTEL = 6236u32,
     GroupUniformArithmeticKHR = 6400u32,
     MaskedGatherScatterINTEL = 6427u32,
     CacheControlsINTEL = 6441u32,
@@ -2346,9 +2285,14 @@ impl Capability {
             5378u32..=5381u32 => unsafe { core::mem::transmute::<u32, Capability>(n) },
             5383u32 => unsafe { core::mem::transmute::<u32, Capability>(5383u32) },
             5390u32..=5391u32 => unsafe { core::mem::transmute::<u32, Capability>(n) },
+            5394u32 => unsafe { core::mem::transmute::<u32, Capability>(5394u32) },
             5404u32 => unsafe { core::mem::transmute::<u32, Capability>(5404u32) },
             5409u32 => unsafe { core::mem::transmute::<u32, Capability>(5409u32) },
             5414u32 => unsafe { core::mem::transmute::<u32, Capability>(5414u32) },
+            5418u32..=5419u32 => unsafe { core::mem::transmute::<u32, Capability>(n) },
+            5430u32..=5435u32 => unsafe { core::mem::transmute::<u32, Capability>(n) },
+            5437u32 => unsafe { core::mem::transmute::<u32, Capability>(5437u32) },
+            5439u32 => unsafe { core::mem::transmute::<u32, Capability>(5439u32) },
             5568u32..=5570u32 => unsafe { core::mem::transmute::<u32, Capability>(n) },
             5579u32 => unsafe { core::mem::transmute::<u32, Capability>(5579u32) },
             5582u32..=5584u32 => unsafe { core::mem::transmute::<u32, Capability>(n) },
@@ -2389,6 +2333,7 @@ impl Capability {
             6094u32..=6095u32 => unsafe { core::mem::transmute::<u32, Capability>(n) },
             6114u32..=6115u32 => unsafe { core::mem::transmute::<u32, Capability>(n) },
             6141u32 => unsafe { core::mem::transmute::<u32, Capability>(6141u32) },
+            6144u32 => unsafe { core::mem::transmute::<u32, Capability>(6144u32) },
             6150u32 => unsafe { core::mem::transmute::<u32, Capability>(6150u32) },
             6161u32 => unsafe { core::mem::transmute::<u32, Capability>(6161u32) },
             6169u32 => unsafe { core::mem::transmute::<u32, Capability>(6169u32) },
@@ -2397,6 +2342,8 @@ impl Capability {
             6187u32 => unsafe { core::mem::transmute::<u32, Capability>(6187u32) },
             6189u32 => unsafe { core::mem::transmute::<u32, Capability>(6189u32) },
             6220u32 => unsafe { core::mem::transmute::<u32, Capability>(6220u32) },
+            6228u32..=6230u32 => unsafe { core::mem::transmute::<u32, Capability>(n) },
+            6236u32 => unsafe { core::mem::transmute::<u32, Capability>(6236u32) },
             6400u32 => unsafe { core::mem::transmute::<u32, Capability>(6400u32) },
             6427u32 => unsafe { core::mem::transmute::<u32, Capability>(6427u32) },
             6441u32 => unsafe { core::mem::transmute::<u32, Capability>(6441u32) },
@@ -2406,45 +2353,7 @@ impl Capability {
     }
 }
 #[allow(non_upper_case_globals)]
-impl Capability {
-    pub const StorageUniformBufferBlock16: Self = Self::StorageBuffer16BitAccess;
-    pub const StorageUniform16: Self = Self::UniformAndStorageBuffer16BitAccess;
-    pub const ShaderViewportIndexLayerNV: Self = Self::ShaderViewportIndexLayerEXT;
-    pub const FragmentBarycentricNV: Self = Self::FragmentBarycentricKHR;
-    pub const ComputeDerivativeGroupQuadsNV: Self = Self::ComputeDerivativeGroupQuadsKHR;
-    pub const ShadingRateNV: Self = Self::FragmentDensityEXT;
-    pub const ShaderNonUniformEXT: Self = Self::ShaderNonUniform;
-    pub const RuntimeDescriptorArrayEXT: Self = Self::RuntimeDescriptorArray;
-    pub const InputAttachmentArrayDynamicIndexingEXT: Self =
-        Self::InputAttachmentArrayDynamicIndexing;
-    pub const UniformTexelBufferArrayDynamicIndexingEXT: Self =
-        Self::UniformTexelBufferArrayDynamicIndexing;
-    pub const StorageTexelBufferArrayDynamicIndexingEXT: Self =
-        Self::StorageTexelBufferArrayDynamicIndexing;
-    pub const UniformBufferArrayNonUniformIndexingEXT: Self =
-        Self::UniformBufferArrayNonUniformIndexing;
-    pub const SampledImageArrayNonUniformIndexingEXT: Self =
-        Self::SampledImageArrayNonUniformIndexing;
-    pub const StorageBufferArrayNonUniformIndexingEXT: Self =
-        Self::StorageBufferArrayNonUniformIndexing;
-    pub const StorageImageArrayNonUniformIndexingEXT: Self =
-        Self::StorageImageArrayNonUniformIndexing;
-    pub const InputAttachmentArrayNonUniformIndexingEXT: Self =
-        Self::InputAttachmentArrayNonUniformIndexing;
-    pub const UniformTexelBufferArrayNonUniformIndexingEXT: Self =
-        Self::UniformTexelBufferArrayNonUniformIndexing;
-    pub const StorageTexelBufferArrayNonUniformIndexingEXT: Self =
-        Self::StorageTexelBufferArrayNonUniformIndexing;
-    pub const VulkanMemoryModelKHR: Self = Self::VulkanMemoryModel;
-    pub const VulkanMemoryModelDeviceScopeKHR: Self = Self::VulkanMemoryModelDeviceScope;
-    pub const PhysicalStorageBufferAddressesEXT: Self = Self::PhysicalStorageBufferAddresses;
-    pub const ComputeDerivativeGroupLinearNV: Self = Self::ComputeDerivativeGroupLinearKHR;
-    pub const DemoteToHelperInvocationEXT: Self = Self::DemoteToHelperInvocation;
-    pub const DotProductInputAllKHR: Self = Self::DotProductInputAll;
-    pub const DotProductInput4x8BitKHR: Self = Self::DotProductInput4x8Bit;
-    pub const DotProductInput4x8BitPackedKHR: Self = Self::DotProductInput4x8BitPacked;
-    pub const DotProductKHR: Self = Self::DotProduct;
-}
+impl Capability {}
 impl core::str::FromStr for Capability {
     type Err = ();
     fn from_str(s: &str) -> Result<Self, Self::Err> {
@@ -2536,9 +2445,7 @@ impl core::str::FromStr for Capability {
             }
             "SubgroupVoteKHR" => Self::SubgroupVoteKHR,
             "StorageBuffer16BitAccess" => Self::StorageBuffer16BitAccess,
-            "StorageUniformBufferBlock16" => Self::StorageBuffer16BitAccess,
             "UniformAndStorageBuffer16BitAccess" => Self::UniformAndStorageBuffer16BitAccess,
-            "StorageUniform16" => Self::UniformAndStorageBuffer16BitAccess,
             "StoragePushConstant16" => Self::StoragePushConstant16,
             "StorageInputOutput16" => Self::StorageInputOutput16,
             "DeviceGroup" => Self::DeviceGroup,
@@ -2576,7 +2483,6 @@ impl core::str::FromStr for Capability {
             "SampleMaskOverrideCoverageNV" => Self::SampleMaskOverrideCoverageNV,
             "GeometryShaderPassthroughNV" => Self::GeometryShaderPassthroughNV,
             "ShaderViewportIndexLayerEXT" => Self::ShaderViewportIndexLayerEXT,
-            "ShaderViewportIndexLayerNV" => Self::ShaderViewportIndexLayerEXT,
             "ShaderViewportMaskNV" => Self::ShaderViewportMaskNV,
             "ShaderStereoViewNV" => Self::ShaderStereoViewNV,
             "PerViewAttributesNV" => Self::PerViewAttributesNV,
@@ -2585,67 +2491,38 @@ impl core::str::FromStr for Capability {
             "ImageFootprintNV" => Self::ImageFootprintNV,
             "MeshShadingEXT" => Self::MeshShadingEXT,
             "FragmentBarycentricKHR" => Self::FragmentBarycentricKHR,
-            "FragmentBarycentricNV" => Self::FragmentBarycentricKHR,
             "ComputeDerivativeGroupQuadsKHR" => Self::ComputeDerivativeGroupQuadsKHR,
-            "ComputeDerivativeGroupQuadsNV" => Self::ComputeDerivativeGroupQuadsKHR,
             "FragmentDensityEXT" => Self::FragmentDensityEXT,
-            "ShadingRateNV" => Self::FragmentDensityEXT,
             "GroupNonUniformPartitionedNV" => Self::GroupNonUniformPartitionedNV,
             "ShaderNonUniform" => Self::ShaderNonUniform,
-            "ShaderNonUniformEXT" => Self::ShaderNonUniform,
             "RuntimeDescriptorArray" => Self::RuntimeDescriptorArray,
-            "RuntimeDescriptorArrayEXT" => Self::RuntimeDescriptorArray,
             "InputAttachmentArrayDynamicIndexing" => Self::InputAttachmentArrayDynamicIndexing,
-            "InputAttachmentArrayDynamicIndexingEXT" => Self::InputAttachmentArrayDynamicIndexing,
             "UniformTexelBufferArrayDynamicIndexing" => {
-                Self::UniformTexelBufferArrayDynamicIndexing
-            }
-            "UniformTexelBufferArrayDynamicIndexingEXT" => {
                 Self::UniformTexelBufferArrayDynamicIndexing
             }
             "StorageTexelBufferArrayDynamicIndexing" => {
                 Self::StorageTexelBufferArrayDynamicIndexing
             }
-            "StorageTexelBufferArrayDynamicIndexingEXT" => {
-                Self::StorageTexelBufferArrayDynamicIndexing
-            }
             "UniformBufferArrayNonUniformIndexing" => Self::UniformBufferArrayNonUniformIndexing,
-            "UniformBufferArrayNonUniformIndexingEXT" => Self::UniformBufferArrayNonUniformIndexing,
             "SampledImageArrayNonUniformIndexing" => Self::SampledImageArrayNonUniformIndexing,
-            "SampledImageArrayNonUniformIndexingEXT" => Self::SampledImageArrayNonUniformIndexing,
             "StorageBufferArrayNonUniformIndexing" => Self::StorageBufferArrayNonUniformIndexing,
-            "StorageBufferArrayNonUniformIndexingEXT" => Self::StorageBufferArrayNonUniformIndexing,
             "StorageImageArrayNonUniformIndexing" => Self::StorageImageArrayNonUniformIndexing,
-            "StorageImageArrayNonUniformIndexingEXT" => Self::StorageImageArrayNonUniformIndexing,
             "InputAttachmentArrayNonUniformIndexing" => {
-                Self::InputAttachmentArrayNonUniformIndexing
-            }
-            "InputAttachmentArrayNonUniformIndexingEXT" => {
                 Self::InputAttachmentArrayNonUniformIndexing
             }
             "UniformTexelBufferArrayNonUniformIndexing" => {
                 Self::UniformTexelBufferArrayNonUniformIndexing
             }
-            "UniformTexelBufferArrayNonUniformIndexingEXT" => {
-                Self::UniformTexelBufferArrayNonUniformIndexing
-            }
             "StorageTexelBufferArrayNonUniformIndexing" => {
-                Self::StorageTexelBufferArrayNonUniformIndexing
-            }
-            "StorageTexelBufferArrayNonUniformIndexingEXT" => {
                 Self::StorageTexelBufferArrayNonUniformIndexing
             }
             "RayTracingPositionFetchKHR" => Self::RayTracingPositionFetchKHR,
             "RayTracingNV" => Self::RayTracingNV,
             "RayTracingMotionBlurNV" => Self::RayTracingMotionBlurNV,
             "VulkanMemoryModel" => Self::VulkanMemoryModel,
-            "VulkanMemoryModelKHR" => Self::VulkanMemoryModel,
             "VulkanMemoryModelDeviceScope" => Self::VulkanMemoryModelDeviceScope,
-            "VulkanMemoryModelDeviceScopeKHR" => Self::VulkanMemoryModelDeviceScope,
             "PhysicalStorageBufferAddresses" => Self::PhysicalStorageBufferAddresses,
-            "PhysicalStorageBufferAddressesEXT" => Self::PhysicalStorageBufferAddresses,
             "ComputeDerivativeGroupLinearKHR" => Self::ComputeDerivativeGroupLinearKHR,
-            "ComputeDerivativeGroupLinearNV" => Self::ComputeDerivativeGroupLinearKHR,
             "RayTracingProvisionalKHR" => Self::RayTracingProvisionalKHR,
             "CooperativeMatrixNV" => Self::CooperativeMatrixNV,
             "FragmentShaderSampleInterlockEXT" => Self::FragmentShaderSampleInterlockEXT,
@@ -2653,15 +2530,31 @@ impl core::str::FromStr for Capability {
             "ShaderSMBuiltinsNV" => Self::ShaderSMBuiltinsNV,
             "FragmentShaderPixelInterlockEXT" => Self::FragmentShaderPixelInterlockEXT,
             "DemoteToHelperInvocation" => Self::DemoteToHelperInvocation,
-            "DemoteToHelperInvocationEXT" => Self::DemoteToHelperInvocation,
             "DisplacementMicromapNV" => Self::DisplacementMicromapNV,
             "RayTracingOpacityMicromapEXT" => Self::RayTracingOpacityMicromapEXT,
             "ShaderInvocationReorderNV" => Self::ShaderInvocationReorderNV,
             "BindlessTextureNV" => Self::BindlessTextureNV,
             "RayQueryPositionFetchKHR" => Self::RayQueryPositionFetchKHR,
+            "CooperativeVectorNV" => Self::CooperativeVectorNV,
             "AtomicFloat16VectorNV" => Self::AtomicFloat16VectorNV,
             "RayTracingDisplacementMicromapNV" => Self::RayTracingDisplacementMicromapNV,
             "RawAccessChainsNV" => Self::RawAccessChainsNV,
+            "RayTracingSpheresGeometryNV" => Self::RayTracingSpheresGeometryNV,
+            "RayTracingLinearSweptSpheresGeometryNV" => {
+                Self::RayTracingLinearSweptSpheresGeometryNV
+            }
+            "CooperativeMatrixReductionsNV" => Self::CooperativeMatrixReductionsNV,
+            "CooperativeMatrixConversionsNV" => Self::CooperativeMatrixConversionsNV,
+            "CooperativeMatrixPerElementOperationsNV" => {
+                Self::CooperativeMatrixPerElementOperationsNV
+            }
+            "CooperativeMatrixTensorAddressingNV" => Self::CooperativeMatrixTensorAddressingNV,
+            "CooperativeMatrixBlockLoadsNV" => Self::CooperativeMatrixBlockLoadsNV,
+            "CooperativeVectorTrainingNV" => Self::CooperativeVectorTrainingNV,
+            "RayTracingClusterAccelerationStructureNV" => {
+                Self::RayTracingClusterAccelerationStructureNV
+            }
+            "TensorAddressingNV" => Self::TensorAddressingNV,
             "SubgroupShuffleINTEL" => Self::SubgroupShuffleINTEL,
             "SubgroupBufferBlockIOINTEL" => Self::SubgroupBufferBlockIOINTEL,
             "SubgroupImageBlockIOINTEL" => Self::SubgroupImageBlockIOINTEL,
@@ -2709,13 +2602,9 @@ impl core::str::FromStr for Capability {
             "BlockingPipesINTEL" => Self::BlockingPipesINTEL,
             "FPGARegINTEL" => Self::FPGARegINTEL,
             "DotProductInputAll" => Self::DotProductInputAll,
-            "DotProductInputAllKHR" => Self::DotProductInputAll,
             "DotProductInput4x8Bit" => Self::DotProductInput4x8Bit,
-            "DotProductInput4x8BitKHR" => Self::DotProductInput4x8Bit,
             "DotProductInput4x8BitPacked" => Self::DotProductInput4x8BitPacked,
-            "DotProductInput4x8BitPackedKHR" => Self::DotProductInput4x8BitPacked,
             "DotProduct" => Self::DotProduct,
-            "DotProductKHR" => Self::DotProduct,
             "RayCullMaskKHR" => Self::RayCullMaskKHR,
             "CooperativeMatrixKHR" => Self::CooperativeMatrixKHR,
             "ReplicatedCompositesEXT" => Self::ReplicatedCompositesEXT,
@@ -2725,11 +2614,12 @@ impl core::str::FromStr for Capability {
             "AtomicFloat32AddEXT" => Self::AtomicFloat32AddEXT,
             "AtomicFloat64AddEXT" => Self::AtomicFloat64AddEXT,
             "LongCompositesINTEL" => Self::LongCompositesINTEL,
-            "OptNoneINTEL" => Self::OptNoneINTEL,
+            "OptNoneEXT" => Self::OptNoneEXT,
             "AtomicFloat16AddEXT" => Self::AtomicFloat16AddEXT,
             "DebugInfoModuleINTEL" => Self::DebugInfoModuleINTEL,
             "BFloat16ConversionINTEL" => Self::BFloat16ConversionINTEL,
             "SplitBarrierINTEL" => Self::SplitBarrierINTEL,
+            "ArithmeticFenceEXT" => Self::ArithmeticFenceEXT,
             "FPGAClusterAttributesV2INTEL" => Self::FPGAClusterAttributesV2INTEL,
             "FPGAKernelAttributesv2INTEL" => Self::FPGAKernelAttributesv2INTEL,
             "FPMaxErrorINTEL" => Self::FPMaxErrorINTEL,
@@ -2738,6 +2628,10 @@ impl core::str::FromStr for Capability {
             "GlobalVariableHostAccessINTEL" => Self::GlobalVariableHostAccessINTEL,
             "GlobalVariableFPGADecorationsINTEL" => Self::GlobalVariableFPGADecorationsINTEL,
             "SubgroupBufferPrefetchINTEL" => Self::SubgroupBufferPrefetchINTEL,
+            "Subgroup2DBlockIOINTEL" => Self::Subgroup2DBlockIOINTEL,
+            "Subgroup2DBlockTransformINTEL" => Self::Subgroup2DBlockTransformINTEL,
+            "Subgroup2DBlockTransposeINTEL" => Self::Subgroup2DBlockTransposeINTEL,
+            "SubgroupMatrixMultiplyAccumulateINTEL" => Self::SubgroupMatrixMultiplyAccumulateINTEL,
             "GroupUniformArithmeticKHR" => Self::GroupUniformArithmeticKHR,
             "MaskedGatherScatterINTEL" => Self::MaskedGatherScatterINTEL,
             "CacheControlsINTEL" => Self::CacheControlsINTEL,
@@ -2866,15 +2760,12 @@ impl PackedVectorFormat {
     }
 }
 #[allow(non_upper_case_globals)]
-impl PackedVectorFormat {
-    pub const PackedVectorFormat4x8BitKHR: Self = Self::PackedVectorFormat4x8Bit;
-}
+impl PackedVectorFormat {}
 impl core::str::FromStr for PackedVectorFormat {
     type Err = ();
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         Ok(match s {
             "PackedVectorFormat4x8Bit" => Self::PackedVectorFormat4x8Bit,
-            "PackedVectorFormat4x8BitKHR" => Self::PackedVectorFormat4x8Bit,
             _ => return Err(()),
         })
     }
@@ -2947,6 +2838,44 @@ impl core::str::FromStr for CooperativeMatrixUse {
         })
     }
 }
+bitflags! { # [doc = "SPIR-V operand kind: [CooperativeMatrixReduce](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_cooperative_matrix_reduce_a_cooperative_matrix_reduce)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct CooperativeMatrixReduce : u32 { const ROW = 1u32 ; const COLUMN = 2u32 ; const R2X2 = 4u32 ; } }
+#[doc = "SPIR-V operand kind: [TensorClampMode](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_tensor_clamp_mode_a_tensor_clamp_mode)"]
+#[repr(u32)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[cfg_attr(feature = "serialize", derive(serde::Serialize))]
+#[cfg_attr(feature = "deserialize", derive(serde::Deserialize))]
+#[allow(clippy::upper_case_acronyms)]
+pub enum TensorClampMode {
+    Undefined = 0u32,
+    Constant = 1u32,
+    ClampToEdge = 2u32,
+    Repeat = 3u32,
+    RepeatMirrored = 4u32,
+}
+impl TensorClampMode {
+    pub fn from_u32(n: u32) -> Option<Self> {
+        Some(match n {
+            0u32..=4u32 => unsafe { core::mem::transmute::<u32, TensorClampMode>(n) },
+            _ => return None,
+        })
+    }
+}
+#[allow(non_upper_case_globals)]
+impl TensorClampMode {}
+impl core::str::FromStr for TensorClampMode {
+    type Err = ();
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        Ok(match s {
+            "Undefined" => Self::Undefined,
+            "Constant" => Self::Constant,
+            "ClampToEdge" => Self::ClampToEdge,
+            "Repeat" => Self::Repeat,
+            "RepeatMirrored" => Self::RepeatMirrored,
+            _ => return Err(()),
+        })
+    }
+}
+bitflags! { # [doc = "SPIR-V operand kind: [TensorAddressingOperands](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_tensor_addressing_operands_a_tensor_addressing_operands)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct TensorAddressingOperands : u32 { const NONE = 0u32 ; const TENSOR_VIEW = 1u32 ; const DECODE_FUNC = 2u32 ; } }
 #[doc = "SPIR-V operand kind: [InitializationModeQualifier](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_initialization_mode_qualifier_a_initialization_mode_qualifier)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -3075,6 +3004,7 @@ impl core::str::FromStr for NamedMaximumNumberOfRegisters {
         })
     }
 }
+bitflags! { # [doc = "SPIR-V operand kind: [MatrixMultiplyAccumulateOperands](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_matrix_multiply_accumulate_operands_a_matrix_multiply_accumulate_operands)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct MatrixMultiplyAccumulateOperands : u32 { const NONE = 0u32 ; const MATRIX_A_SIGNED_COMPONENTS_INTEL = 1u32 ; const MATRIX_B_SIGNED_COMPONENTS_INTEL = 2u32 ; const MATRIX_CB_FLOAT16_INTEL = 4u32 ; const MATRIX_RESULT_B_FLOAT16_INTEL = 8u32 ; const MATRIX_A_PACKED_INT8_INTEL = 16u32 ; const MATRIX_B_PACKED_INT8_INTEL = 32u32 ; const MATRIX_A_PACKED_INT4_INTEL = 64u32 ; const MATRIX_B_PACKED_INT4_INTEL = 128u32 ; const MATRIX_ATF32INTEL = 256u32 ; const MATRIX_BTF32INTEL = 512u32 ; const MATRIX_A_PACKED_FLOAT16_INTEL = 1024u32 ; const MATRIX_B_PACKED_FLOAT16_INTEL = 2048u32 ; const MATRIX_A_PACKED_B_FLOAT16_INTEL = 4096u32 ; const MATRIX_B_PACKED_B_FLOAT16_INTEL = 8192u32 ; } }
 #[doc = "SPIR-V operand kind: [FPEncoding](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_fp_encoding_a_fp_encoding)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -3099,6 +3029,99 @@ impl core::str::FromStr for FPEncoding {
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         Ok(match s {
             "Max" => Self::Max,
+            _ => return Err(()),
+        })
+    }
+}
+#[doc = "SPIR-V operand kind: [CooperativeVectorMatrixLayout](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_cooperative_vector_matrix_layout_a_cooperative_vector_matrix_layout)"]
+#[repr(u32)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[cfg_attr(feature = "serialize", derive(serde::Serialize))]
+#[cfg_attr(feature = "deserialize", derive(serde::Deserialize))]
+#[allow(clippy::upper_case_acronyms)]
+pub enum CooperativeVectorMatrixLayout {
+    RowMajorNV = 0u32,
+    ColumnMajorNV = 1u32,
+    InferencingOptimalNV = 2u32,
+    TrainingOptimalNV = 3u32,
+}
+impl CooperativeVectorMatrixLayout {
+    pub fn from_u32(n: u32) -> Option<Self> {
+        Some(match n {
+            0u32..=3u32 => unsafe { core::mem::transmute::<u32, CooperativeVectorMatrixLayout>(n) },
+            _ => return None,
+        })
+    }
+}
+#[allow(non_upper_case_globals)]
+impl CooperativeVectorMatrixLayout {}
+impl core::str::FromStr for CooperativeVectorMatrixLayout {
+    type Err = ();
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        Ok(match s {
+            "RowMajorNV" => Self::RowMajorNV,
+            "ColumnMajorNV" => Self::ColumnMajorNV,
+            "InferencingOptimalNV" => Self::InferencingOptimalNV,
+            "TrainingOptimalNV" => Self::TrainingOptimalNV,
+            _ => return Err(()),
+        })
+    }
+}
+#[doc = "SPIR-V operand kind: [ComponentType](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_component_type_a_component_type)"]
+#[repr(u32)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[cfg_attr(feature = "serialize", derive(serde::Serialize))]
+#[cfg_attr(feature = "deserialize", derive(serde::Deserialize))]
+#[allow(clippy::upper_case_acronyms)]
+pub enum ComponentType {
+    Float16NV = 0u32,
+    Float32NV = 1u32,
+    Float64NV = 2u32,
+    SignedInt8NV = 3u32,
+    SignedInt16NV = 4u32,
+    SignedInt32NV = 5u32,
+    SignedInt64NV = 6u32,
+    UnsignedInt8NV = 7u32,
+    UnsignedInt16NV = 8u32,
+    UnsignedInt32NV = 9u32,
+    UnsignedInt64NV = 10u32,
+    SignedInt8PackedNV = 1000491000u32,
+    UnsignedInt8PackedNV = 1000491001u32,
+    FloatE4M3NV = 1000491002u32,
+    FloatE5M2NV = 1000491003u32,
+}
+impl ComponentType {
+    pub fn from_u32(n: u32) -> Option<Self> {
+        Some(match n {
+            0u32..=10u32 => unsafe { core::mem::transmute::<u32, ComponentType>(n) },
+            1000491000u32..=1000491003u32 => unsafe {
+                core::mem::transmute::<u32, ComponentType>(n)
+            },
+            _ => return None,
+        })
+    }
+}
+#[allow(non_upper_case_globals)]
+impl ComponentType {}
+impl core::str::FromStr for ComponentType {
+    type Err = ();
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        Ok(match s {
+            "Float16NV" => Self::Float16NV,
+            "Float32NV" => Self::Float32NV,
+            "Float64NV" => Self::Float64NV,
+            "SignedInt8NV" => Self::SignedInt8NV,
+            "SignedInt16NV" => Self::SignedInt16NV,
+            "SignedInt32NV" => Self::SignedInt32NV,
+            "SignedInt64NV" => Self::SignedInt64NV,
+            "UnsignedInt8NV" => Self::UnsignedInt8NV,
+            "UnsignedInt16NV" => Self::UnsignedInt16NV,
+            "UnsignedInt32NV" => Self::UnsignedInt32NV,
+            "UnsignedInt64NV" => Self::UnsignedInt64NV,
+            "SignedInt8PackedNV" => Self::SignedInt8PackedNV,
+            "UnsignedInt8PackedNV" => Self::UnsignedInt8PackedNV,
+            "FloatE4M3NV" => Self::FloatE4M3NV,
+            "FloatE5M2NV" => Self::FloatE5M2NV,
             _ => return Err(()),
         })
     }
@@ -3519,9 +3542,14 @@ pub enum Op {
     FragmentMaskFetchAMD = 5011u32,
     FragmentFetchAMD = 5012u32,
     ReadClockKHR = 5056u32,
-    FinalizeNodePayloadsAMDX = 5075u32,
+    AllocateNodePayloadsAMDX = 5074u32,
+    EnqueueNodePayloadsAMDX = 5075u32,
+    TypeNodePayloadArrayAMDX = 5076u32,
     FinishWritingNodePayloadAMDX = 5078u32,
-    InitializeNodePayloadsAMDX = 5090u32,
+    NodePayloadArrayLengthAMDX = 5090u32,
+    IsNodePayloadValidAMDX = 5101u32,
+    ConstantStringAMDX = 5103u32,
+    SpecConstantStringAMDX = 5104u32,
     GroupNonUniformQuadAllKHR = 5110u32,
     GroupNonUniformQuadAnyKHR = 5111u32,
     HitObjectRecordHitMotionNV = 5249u32,
@@ -3558,12 +3586,20 @@ pub enum Op {
     ReorderThreadWithHintNV = 5280u32,
     TypeHitObjectNV = 5281u32,
     ImageSampleFootprintNV = 5283u32,
+    TypeCooperativeVectorNV = 5288u32,
+    CooperativeVectorMatrixMulNV = 5289u32,
+    CooperativeVectorOuterProductAccumulateNV = 5290u32,
+    CooperativeVectorReduceSumAccumulateNV = 5291u32,
+    CooperativeVectorMatrixMulAddNV = 5292u32,
+    CooperativeMatrixConvertNV = 5293u32,
     EmitMeshTasksEXT = 5294u32,
     SetMeshOutputsEXT = 5295u32,
     GroupNonUniformPartitionNV = 5296u32,
     WritePackedPrimitiveIndices4x8NV = 5299u32,
     FetchMicroTriangleVertexPositionNV = 5300u32,
     FetchMicroTriangleVertexBarycentricNV = 5301u32,
+    CooperativeVectorLoadNV = 5302u32,
+    CooperativeVectorStoreNV = 5303u32,
     ReportIntersectionKHR = 5334u32,
     IgnoreIntersectionNV = 5335u32,
     TerminateRayNV = 5336u32,
@@ -3573,6 +3609,8 @@ pub enum Op {
     RayQueryGetIntersectionTriangleVertexPositionsKHR = 5340u32,
     TypeAccelerationStructureKHR = 5341u32,
     ExecuteCallableNV = 5344u32,
+    RayQueryGetClusterIdNV = 5345u32,
+    HitObjectGetClusterIdNV = 5346u32,
     TypeCooperativeMatrixNV = 5358u32,
     CooperativeMatrixLoadNV = 5359u32,
     CooperativeMatrixStoreNV = 5360u32,
@@ -3580,8 +3618,25 @@ pub enum Op {
     CooperativeMatrixLengthNV = 5362u32,
     BeginInvocationInterlockEXT = 5364u32,
     EndInvocationInterlockEXT = 5365u32,
+    CooperativeMatrixReduceNV = 5366u32,
+    CooperativeMatrixLoadTensorNV = 5367u32,
+    CooperativeMatrixStoreTensorNV = 5368u32,
+    CooperativeMatrixPerElementOpNV = 5369u32,
+    TypeTensorLayoutNV = 5370u32,
+    TypeTensorViewNV = 5371u32,
+    CreateTensorLayoutNV = 5372u32,
+    TensorLayoutSetDimensionNV = 5373u32,
+    TensorLayoutSetStrideNV = 5374u32,
+    TensorLayoutSliceNV = 5375u32,
+    TensorLayoutSetClampValueNV = 5376u32,
+    CreateTensorViewNV = 5377u32,
+    TensorViewSetDimensionNV = 5378u32,
+    TensorViewSetStrideNV = 5379u32,
     DemoteToHelperInvocation = 5380u32,
     IsHelperInvocationEXT = 5381u32,
+    TensorViewSetClipNV = 5382u32,
+    TensorLayoutSetBlockSizeNV = 5384u32,
+    CooperativeMatrixTransposeNV = 5390u32,
     ConvertUToImageNV = 5391u32,
     ConvertUToSamplerNV = 5392u32,
     ConvertImageToUNV = 5393u32,
@@ -3590,6 +3645,19 @@ pub enum Op {
     ConvertSampledImageToUNV = 5396u32,
     SamplerImageAddressingModeNV = 5397u32,
     RawAccessChainNV = 5398u32,
+    RayQueryGetIntersectionSpherePositionNV = 5427u32,
+    RayQueryGetIntersectionSphereRadiusNV = 5428u32,
+    RayQueryGetIntersectionLSSPositionsNV = 5429u32,
+    RayQueryGetIntersectionLSSRadiiNV = 5430u32,
+    RayQueryGetIntersectionLSSHitValueNV = 5431u32,
+    HitObjectGetSpherePositionNV = 5432u32,
+    HitObjectGetSphereRadiusNV = 5433u32,
+    HitObjectGetLSSPositionsNV = 5434u32,
+    HitObjectGetLSSRadiiNV = 5435u32,
+    HitObjectIsSphereHitNV = 5436u32,
+    HitObjectIsLSSHitNV = 5437u32,
+    RayQueryIsSphereHitNV = 5438u32,
+    RayQueryIsLSSHitNV = 5439u32,
     SubgroupShuffleINTEL = 5571u32,
     SubgroupShuffleDownINTEL = 5572u32,
     SubgroupShuffleUpINTEL = 5573u32,
@@ -3834,7 +3902,14 @@ pub enum Op {
     ConvertBF16ToFINTEL = 6117u32,
     ControlBarrierArriveINTEL = 6142u32,
     ControlBarrierWaitINTEL = 6143u32,
+    ArithmeticFenceEXT = 6145u32,
     SubgroupBlockPrefetchINTEL = 6221u32,
+    Subgroup2DBlockLoadINTEL = 6231u32,
+    Subgroup2DBlockLoadTransformINTEL = 6232u32,
+    Subgroup2DBlockLoadTransposeINTEL = 6233u32,
+    Subgroup2DBlockPrefetchINTEL = 6234u32,
+    Subgroup2DBlockStoreINTEL = 6235u32,
+    SubgroupMatrixMultiplyAccumulateINTEL = 6237u32,
     GroupIMulKHR = 6401u32,
     GroupFMulKHR = 6402u32,
     GroupBitwiseAndKHR = 6403u32,
@@ -3882,20 +3957,23 @@ impl Op {
             5000u32..=5007u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
             5011u32..=5012u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
             5056u32 => unsafe { core::mem::transmute::<u32, Op>(5056u32) },
-            5075u32 => unsafe { core::mem::transmute::<u32, Op>(5075u32) },
+            5074u32..=5076u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
             5078u32 => unsafe { core::mem::transmute::<u32, Op>(5078u32) },
             5090u32 => unsafe { core::mem::transmute::<u32, Op>(5090u32) },
+            5101u32 => unsafe { core::mem::transmute::<u32, Op>(5101u32) },
+            5103u32..=5104u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
             5110u32..=5111u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
             5249u32..=5281u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
             5283u32 => unsafe { core::mem::transmute::<u32, Op>(5283u32) },
-            5294u32..=5296u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
-            5299u32..=5301u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
+            5288u32..=5296u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
+            5299u32..=5303u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
             5334u32..=5341u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
-            5344u32 => unsafe { core::mem::transmute::<u32, Op>(5344u32) },
+            5344u32..=5346u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
             5358u32..=5362u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
-            5364u32..=5365u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
-            5380u32..=5381u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
-            5391u32..=5398u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
+            5364u32..=5382u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
+            5384u32 => unsafe { core::mem::transmute::<u32, Op>(5384u32) },
+            5390u32..=5398u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
+            5427u32..=5439u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
             5571u32..=5578u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
             5580u32..=5581u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
             5585u32..=5598u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
@@ -3920,7 +3998,10 @@ impl Op {
             6096u32 => unsafe { core::mem::transmute::<u32, Op>(6096u32) },
             6116u32..=6117u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
             6142u32..=6143u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
+            6145u32 => unsafe { core::mem::transmute::<u32, Op>(6145u32) },
             6221u32 => unsafe { core::mem::transmute::<u32, Op>(6221u32) },
+            6231u32..=6235u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
+            6237u32 => unsafe { core::mem::transmute::<u32, Op>(6237u32) },
             6401u32..=6408u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
             6428u32..=6429u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
             _ => return None,
@@ -3929,19 +4010,7 @@ impl Op {
 }
 #[allow(clippy::upper_case_acronyms)]
 #[allow(non_upper_case_globals)]
-impl Op {
-    pub const SDotKHR: Op = Op::SDot;
-    pub const UDotKHR: Op = Op::UDot;
-    pub const SUDotKHR: Op = Op::SUDot;
-    pub const SDotAccSatKHR: Op = Op::SDotAccSat;
-    pub const UDotAccSatKHR: Op = Op::UDotAccSat;
-    pub const SUDotAccSatKHR: Op = Op::SUDotAccSat;
-    pub const ReportIntersectionNV: Op = Op::ReportIntersectionKHR;
-    pub const TypeAccelerationStructureNV: Op = Op::TypeAccelerationStructureKHR;
-    pub const DemoteToHelperInvocationEXT: Op = Op::DemoteToHelperInvocation;
-    pub const DecorateStringGOOGLE: Op = Op::DecorateString;
-    pub const MemberDecorateStringGOOGLE: Op = Op::MemberDecorateString;
-}
+impl Op {}
 #[doc = "[GLSL.std.450](https://www.khronos.org/registry/spir-v/specs/unified1/GLSL.std.450.html) extended instruction opcode"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]

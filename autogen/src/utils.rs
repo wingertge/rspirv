@@ -20,7 +20,13 @@ pub fn write_autogen_comment(file: &mut fs::File) {
 
 /// Converts the given string into an `Ident`, with call-site span.
 pub fn as_ident(ident: &str) -> Ident {
-    Ident::new(ident, Span::call_site())
+    let first_byte = ident.bytes().next().unwrap();
+    // Escape bitfield variant that starts with a number
+    if first_byte.is_ascii_digit() {
+        Ident::new(&format!("R{ident}"), Span::call_site())
+    } else {
+        Ident::new(ident, Span::call_site())
+    }
 }
 
 /// Returns the corresponding operand kind in data representation for the
