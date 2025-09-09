@@ -3,7 +3,7 @@ use crate::structs;
 use std::fs;
 use std::io::Write;
 
-use heck::SnakeCase;
+use heck::ToSnakeCase;
 use proc_macro2::{Ident, Span, TokenStream};
 use quote::quote;
 

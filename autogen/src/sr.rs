@@ -1,7 +1,7 @@
 use crate::structs;
 use crate::utils::*;
 
-use heck::SnakeCase;
+use heck::ToSnakeCase;
 use proc_macro2::{Ident, Span, TokenStream};
 use quote::quote;
 

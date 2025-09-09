@@ -3,7 +3,7 @@ use std::collections::HashSet;
 use crate::structs;
 use crate::utils::*;
 
-use heck::SnakeCase;
+use heck::ToSnakeCase;
 use proc_macro2::TokenStream;
 use quote::{format_ident, quote};
 use std::collections::BTreeMap;
@@ -392,7 +392,7 @@ pub fn gen_dr_operand_kinds(grammar: &[structs::OperandKind]) -> TokenStream {
                 for e in enumerators {
                         let name = match category {
                             structs::Category::BitEnum => {
-                                use heck::ShoutySnakeCase;
+                                use heck::ToShoutySnakeCase;
 
                                 as_ident(&e.symbol.to_shouty_snake_case().replace("NA_N", "NAN"))
                             }
