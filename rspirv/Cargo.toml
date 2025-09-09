@@ -14,9 +14,14 @@ repository = "https://github.com/gfx-rs/rspirv"
 [lib]
 path = "lib.rs"
 
+[features]
+deserialize = ['serde', 'bitflags/serde']
+serialize = ['serde', 'bitflags/serde']
+
 [dependencies]
+bitflags = "2.9.4"
 rustc-hash = "2.1.0"
-spirv = { version = "0.3.0", path = "../spirv", package = "tracel-spirv" }
+serde = { version = "1", features = ["derive"], optional = true }
 
 [dev-dependencies]
 assert_matches = "1.1"

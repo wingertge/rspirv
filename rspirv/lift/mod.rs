@@ -6,6 +6,7 @@ mod storage;
 use self::storage::LiftStorage;
 use crate::{
     dr,
+    spirv,
     sr::{instructions, module, ops, storage::Token, Constant, StructMember, Type},
 };
 

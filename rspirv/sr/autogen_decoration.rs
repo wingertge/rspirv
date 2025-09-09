@@ -3,6 +3,7 @@
 // DO NOT MODIFY!
 
 #![allow(clippy::upper_case_acronyms)]
+use crate::spirv;
 #[doc = r" SPIR-V decorations."]
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum Decoration {

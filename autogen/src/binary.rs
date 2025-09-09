@@ -47,6 +47,7 @@ pub fn gen_operand_decode_errors(grammar: &[structs::OperandKind]) -> TokenStrea
 
     quote! {
         use std::{error, fmt};
+        use crate::spirv;
 
         #[doc = "Decoder Error"]
         #[derive(Debug, PartialEq, Eq)]

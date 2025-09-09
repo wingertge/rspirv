@@ -73,12 +73,14 @@
 //!             OpFunctionEnd");
 //! ```
 
-pub use spirv;
+#[macro_use]
+extern crate bitflags;
 
 pub mod binary;
 pub mod dr;
 pub mod grammar;
 pub mod lift;
+pub mod spirv;
 pub mod sr;
 
 mod utils;

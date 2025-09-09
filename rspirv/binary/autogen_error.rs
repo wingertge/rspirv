@@ -2,6 +2,7 @@
 //   external/spirv.core.grammar.json.
 // DO NOT MODIFY!
 
+use crate::spirv;
 use std::{error, fmt};
 #[doc = "Decoder Error"]
 #[derive(Debug, PartialEq, Eq)]

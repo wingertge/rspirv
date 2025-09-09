@@ -279,6 +279,8 @@ pub fn gen_sr_code_from_operand_kind_grammar(
     let tokens = quote! {
         #![allow(clippy::upper_case_acronyms)]
 
+        use crate::spirv;
+
         /// SPIR-V decorations.
         #[derive(Clone, Debug, Eq, PartialEq)]
         pub enum Decoration {
@@ -487,11 +489,13 @@ pub fn gen_sr_code_from_instruction_grammar(
     };
 
     let instructions = quote! {
+        use crate::spirv;
         #( #inst_structs )*
     };
 
     let ops = quote! {
         use crate::sr::{module::Jump, storage::Token, Type};
+        use crate::spirv;
 
         #[derive(Clone, Debug, Eq, PartialEq)]
         pub enum Branch {

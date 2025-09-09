@@ -2,6 +2,7 @@
 //   external/spirv.core.grammar.json.
 // DO NOT MODIFY!
 
+use crate::spirv;
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Extension {
     pub name: String,

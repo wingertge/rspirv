@@ -23,6 +23,8 @@ pub fn as_ident(ident: &str) -> Ident {
     let first_char = ident.chars().next().unwrap();
     if first_char.is_ascii_digit() {
         Ident::new(&format!("_{ident}"), Span::call_site())
+    } else if ident == "macro" {
+        Ident::new(&format!("{ident}_"), Span::call_site())
     } else {
         Ident::new(ident, Span::call_site())
     }

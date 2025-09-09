@@ -9,7 +9,8 @@ mod table;
 mod utils;
 
 use std::{
-    env, fs,
+    env,
+    fs,
     io::Write,
     path::{Path, PathBuf},
     process,
@@ -129,11 +130,55 @@ fn main() {
     };
 
     let extended_instruction_sets = [
-        ("GLSL.std.450", "GLOp", "https://www.khronos.org/registry/spir-v/specs/unified1/GLSL.std.450.html"),
-        ("OpenCL.std.100", "CLOp", "https://www.khronos.org/registry/spir-v/specs/unified1/OpenCL.ExtendedInstructionSet.100.html"),
-        ("NonSemantic.DebugPrintF", "DebugPrintFOp", "https://github.com/KhronosGroup/Vulkan-ValidationLayers/blob/master/docs/debug_printf.md"),
+        ("GLSL.std.450", "GLOp", "gl_", true, "https://www.khronos.org/registry/spir-v/specs/unified1/GLSL.std.450.html"),
+        ("OpenCL.std.100", "CLOp", "cl_", true, "https://www.khronos.org/registry/spir-v/specs/unified1/OpenCL.ExtendedInstructionSet.100.html"),
+        ("NonSemantic.DebugPrintf", "DebugPrintfOp", "", false, "https://github.com/KhronosGroup/Vulkan-ValidationLayers/blob/master/docs/debug_printf.md"),
     ];
-    let extended_instruction_sets = extended_instruction_sets.map(|(ext, op, url)| {
+    let extended_instruction_sets =
+        extended_instruction_sets.map(|(ext, op, prefix, with_result, url)| {
+            let grammar: structs::ExtInstSetGrammar = serde_json::from_str(
+                &std::fs::read_to_string(autogen_src_dir.join(format!(
+                    "external/SPIRV-Headers/include/spirv/unified1/extinst.{}.grammar.json",
+                    ext.to_lowercase()
+                )))
+                .unwrap(),
+            )
+            .unwrap();
+            (ext, op, prefix, url, with_result, grammar)
+        });
+
+    // Extended instruction sets
+    for (ext, op_name, op_prefix, url, with_result, grammar) in &extended_instruction_sets {
+        let header = header::gen_spirv_ext_header(op_name, url, grammar);
+        write_formatted(
+            &autogen_src_dir.join(format!(
+                "../rspirv/spirv/autogen_{}.rs",
+                ext.replace(".", "_").to_lowercase()
+            )),
+            header,
+        );
+
+        let builder = dr::gen_dr_builder_ext(
+            ext,
+            op_name,
+            op_prefix,
+            &grammar.operand_kinds,
+            &grammar.instructions,
+            *with_result,
+        );
+        write_formatted(
+            &autogen_src_dir.join(format!(
+                "../rspirv/dr/autogen_{}.rs",
+                ext.replace(".", "_").to_lowercase()
+            )),
+            builder,
+        );
+    }
+
+    // Special case for debug extension
+    {
+        let (ext, op_name, op_prefix, url) = ("NonSemantic.Shader.DebugInfo.100", "DebugInfoOp", "shader_", "https://github.khronos.org/SPIRV-Registry/nonsemantic/NonSemantic.Shader.DebugInfo.100.html");
+
         let grammar: structs::ExtInstSetGrammar = serde_json::from_str(
             &std::fs::read_to_string(autogen_src_dir.join(format!(
                 "external/SPIRV-Headers/include/spirv/unified1/extinst.{}.grammar.json",
@@ -142,28 +187,35 @@ fn main() {
             .unwrap(),
         )
         .unwrap();
-        (ext, op, url, grammar)
-    });
+        let header = header::gen_spirv_ext_header(op_name, url, &grammar);
+        write_formatted(
+            &autogen_src_dir.join(format!(
+                "../rspirv/spirv/autogen_{}.rs",
+                ext.replace(".", "_").to_lowercase()
+            )),
+            header,
+        );
+
+        let builder = dr::gen_dr_builder_debug_ext(
+            ext,
+            op_name,
+            op_prefix,
+            &grammar.operand_kinds,
+            &grammar.instructions,
+        );
+        write_formatted(
+            &autogen_src_dir.join(format!(
+                "../rspirv/dr/autogen_{}.rs",
+                ext.replace(".", "_").to_lowercase()
+            )),
+            builder,
+        );
+    }
 
     // SPIR-V header
-    write_formatted(&autogen_src_dir.join("../spirv/autogen_spirv.rs"), {
+    write_formatted(&autogen_src_dir.join("../rspirv/spirv/autogen_spirv.rs"), {
         let core = header::gen_spirv_header(&grammar);
-        let extended_instruction_sets =
-            extended_instruction_sets
-                .iter()
-                .map(|(ext, op, url, grammar)| {
-                    header::gen_opcodes(
-                        op,
-                        grammar,
-                        &format!("[{}]({}) extended instruction opcode", ext, url),
-                    )
-                    .to_string()
-                });
-        format!(
-            "{}\n{}",
-            core,
-            extended_instruction_sets.collect::<Vec<_>>().join("\n")
-        )
+        format!("{}", core)
     });
 
     // Instruction table
@@ -172,7 +224,7 @@ fn main() {
         table::gen_grammar_inst_table_operand_kinds(&grammar),
     );
     // Extended instruction sets
-    for (ext, _, _, grammar) in extended_instruction_sets {
+    for (ext, _, _, _, _, grammar) in extended_instruction_sets {
         write_formatted(
             &autogen_src_dir.join(format!(
                 "../rspirv/grammar/autogen_{}.rs",

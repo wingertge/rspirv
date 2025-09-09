@@ -1,6 +1,6 @@
 use std::collections::HashSet;
 
-use crate::structs;
+use crate::structs::{self, Instruction, OperandKind};
 use crate::utils::*;
 
 use heck::ToSnakeCase;
@@ -694,6 +694,204 @@ pub fn gen_dr_builder_types(grammar: &structs::Grammar) -> TokenStream {
     quote! {
         impl Builder {
             #(#elements)*
+        }
+    }
+}
+
+/// Returns the generated build methods for SPIR-V extension instructions by walking the given
+/// SPIR-V instructions `grammar`.
+pub fn gen_dr_builder_ext(
+    ext_name: &str,
+    op_name: &str,
+    op_prefix: &str,
+    kinds: &[OperandKind],
+    instructions: &[Instruction],
+    with_result_type: bool,
+) -> TokenStream {
+    let op_name = as_ident(op_name);
+
+    // Generate build methods for all types.
+    let elements = instructions.iter().map(|inst| {
+        let param_list = get_param_list(&inst.operands, false, kinds);
+        let arg_list = get_arg_list(&inst.operands, false, kinds);
+        // Initializer list for constructing the operands parameter
+        // for Instruction.
+        let init_list = get_init_list(&inst.operands);
+        let extras = get_push_extras(&inst.operands,
+                                     kinds,
+                                     quote![args]);
+        let opcode = as_ident(&inst.opname);
+        let name = format_ident!("{}{}", op_prefix, &inst.opname.to_snake_case());
+
+        let name_id = format_ident!("{}_id", name);
+
+        if with_result_type {
+            quote! {
+                #[allow(clippy::too_many_arguments)]
+                pub fn #name(&mut self, result_type: spirv::Word, #(#param_list),*) -> Result<spirv::Word, dr::Error> {
+                    self.#name_id(result_type, None, #(#arg_list),*)
+                }
+
+                #[allow(clippy::too_many_arguments)]
+                pub fn #name_id(&mut self, result_type: spirv::Word, result_id: Option<spirv::Word>, #(#param_list),*) -> Result<spirv::Word, dr::Error> {
+                    let extension_set = super::ext_inst_import(self, #ext_name);
+
+                    #[allow(unused_mut)]
+                    let mut args = vec![#(#init_list),*];
+                    #(#extras)*
+
+                    self.ext_inst(result_type, result_id, extension_set, crate::spirv::#op_name::#opcode as spirv::Word, args)
+                }
+            }
+        } else {
+            quote! {
+                #[allow(clippy::too_many_arguments)]
+                pub fn #name(&mut self, #(#param_list),*) -> Result<spirv::Word, dr::Error> {
+                    self.#name_id(None, #(#arg_list),*)
+                }
+
+                #[allow(clippy::too_many_arguments)]
+                pub fn #name_id(&mut self, result_id: Option<spirv::Word>, #(#param_list),*) -> Result<spirv::Word, dr::Error> {
+                    let extension_set = super::ext_inst_import(self, #ext_name);
+
+                    let result_type = self.type_void();
+
+                    #[allow(unused_mut)]
+                    let mut args = vec![#(#init_list),*];
+                    #(#extras)*
+
+                    self.ext_inst(result_type, result_id, extension_set, crate::spirv::#op_name::#opcode as spirv::Word, args)
+                }
+            }
+        }
+    });
+
+    quote! {
+        use crate::{spirv, dr::{Builder, self}};
+
+        impl Builder {
+            #(#elements)*
+        }
+    }
+}
+
+/// Debug instructions that are local, as opposed to being appended to the types
+const LOCAL_DEBUG_OPS: &[&str] = &[
+    "DebugScope",
+    "DebugNoScope",
+    "DebugDeclare",
+    "DebugValue",
+    "DebugLine",
+    "DebugNoLine",
+    "DebugFunctionDefinition",
+];
+
+/// Returns the generated build methods for SPIR-V extension instructions by walking the given
+/// SPIR-V instructions `grammar`.
+pub fn gen_dr_builder_debug_ext(
+    ext_name: &str,
+    op_name: &str,
+    op_prefix: &str,
+    kinds: &[OperandKind],
+    instructions: &[Instruction],
+) -> TokenStream {
+    let op_name = as_ident(op_name);
+
+    let local_elements = instructions
+        .iter()
+        .filter(|inst| LOCAL_DEBUG_OPS.contains(&inst.opname.as_str()))
+        .map(|inst| {
+            let param_list = get_param_list(&inst.operands, false, kinds);
+            let arg_list = get_arg_list(&inst.operands, false, kinds);
+            // Initializer list for constructing the operands parameter
+            // for Instruction.
+            let init_list = get_init_list(&inst.operands);
+            let extras = get_push_extras(&inst.operands,
+                                         kinds,
+                                         quote![args]);
+            let opcode = as_ident(&inst.opname);
+            let name = format_ident!("{}{}", op_prefix, &inst.opname.to_snake_case());
+
+            let name_id = format_ident!("{}_id", name);
+
+            quote! {
+                #[allow(clippy::too_many_arguments)]
+                pub fn #name(&mut self, #(#param_list),*) -> Result<spirv::Word, dr::Error> {
+                    self.#name_id(None, #(#arg_list),*)
+                }
+
+                #[allow(clippy::too_many_arguments)]
+                pub fn #name_id(&mut self, result_id: Option<spirv::Word>, #(#param_list),*) -> Result<spirv::Word, dr::Error> {
+                    let extension_set = super::ext_inst_import(self, #ext_name);
+
+                    let result_type = self.type_void();
+
+                    #[allow(unused_mut)]
+                    let mut args = vec![#(#init_list),*];
+                    #(#extras)*
+
+                    self.ext_inst(result_type, result_id, extension_set, crate::spirv::#op_name::#opcode as spirv::Word, args)
+                }
+            }
+        });
+
+    // Generate build methods for all types.
+    let elements = instructions.iter().filter(|inst| {
+        !LOCAL_DEBUG_OPS.contains(&inst.opname.as_str())
+    }).map(|inst| {
+        let param_list = get_param_list(&inst.operands, false, kinds);
+        let arg_list = get_arg_list(&inst.operands, false, kinds);
+        // Initializer list for constructing the operands parameter
+        // for Instruction.
+        let init_list = get_init_list(&inst.operands);
+        let extras = get_push_extras(&inst.operands,
+                                     kinds,
+                                     quote![inst.operands]);
+        let opcode = as_ident(&inst.opname);
+ let name = format_ident!("{}{}", op_prefix, &inst.opname.to_snake_case());
+
+        let name_id = format_ident!("{}_id", name);
+
+        quote! {
+            #[allow(clippy::too_many_arguments)]
+            pub fn #name(&mut self, #(#param_list),*) -> spirv::Word {
+                self.#name_id(None, #(#arg_list),*)
+            }
+
+            #[allow(clippy::too_many_arguments)]
+            pub fn #name_id(&mut self, result_id: Option<spirv::Word>, #(#param_list),*) -> spirv::Word {
+                let extension_set = super::ext_inst_import(self, #ext_name);
+                let result_type = self.type_void();
+
+                let mut inst = dr::Instruction::new(spirv::Op::ExtInst, Some(result_type), result_id, vec![
+                    dr::Operand::IdRef(extension_set),
+                    dr::Operand::LiteralExtInstInteger(crate::spirv::#op_name::#opcode as spirv::Word),
+                    #(#init_list),*
+                ]);
+
+                #(#extras)*
+
+                if let Some(id) = inst.result_id {
+                    self.module_mut().types_global_values.push(inst);
+                    id
+                } else if let Some(id) = self.dedup_insert_type(&inst) {
+                    id
+                } else {
+                    let id = self.id();
+                    inst.result_id = Some(id);
+                    self.module_mut().types_global_values.push(inst);
+                    id
+                }
+            }
+        }
+    });
+
+    quote! {
+        use crate::{spirv, dr::{Builder, self}};
+
+        impl Builder {
+            #(#elements)*
+            #(#local_elements)*
         }
     }
 }

@@ -2,6 +2,7 @@
 //   external/spirv.core.grammar.json.
 // DO NOT MODIFY!
 
+use crate::spirv;
 use crate::sr::{module::Jump, storage::Token, Type};
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum Branch {

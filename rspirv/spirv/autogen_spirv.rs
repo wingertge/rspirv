@@ -7,18 +7,18 @@ pub const MAGIC_NUMBER: u32 = 0x07230203;
 pub const MAJOR_VERSION: u8 = 1u8;
 pub const MINOR_VERSION: u8 = 6u8;
 pub const REVISION: u8 = 4u8;
-bitflags! { # [doc = "SPIR-V operand kind: [ImageOperands](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_image_operands_a_image_operands)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct ImageOperands : u32 { const NONE = 0u32 ; const BIAS = 1u32 ; const LOD = 2u32 ; const GRAD = 4u32 ; const CONST_OFFSET = 8u32 ; const OFFSET = 16u32 ; const CONST_OFFSETS = 32u32 ; const SAMPLE = 64u32 ; const MIN_LOD = 128u32 ; const MAKE_TEXEL_AVAILABLE = 256u32 ; const MAKE_TEXEL_VISIBLE = 512u32 ; const NON_PRIVATE_TEXEL = 1024u32 ; const VOLATILE_TEXEL = 2048u32 ; const SIGN_EXTEND = 4096u32 ; const ZERO_EXTEND = 8192u32 ; const NONTEMPORAL = 16384u32 ; const OFFSETS = 65536u32 ; } }
-bitflags! { # [doc = "SPIR-V operand kind: [FPFastMathMode](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_fp_fast_math_mode_a_fp_fast_math_mode)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct FPFastMathMode : u32 { const NONE = 0u32 ; const NOT_NAN = 1u32 ; const NOT_INF = 2u32 ; const NSZ = 4u32 ; const ALLOW_RECIP = 8u32 ; const FAST = 16u32 ; const ALLOW_CONTRACT = 65536u32 ; const ALLOW_REASSOC = 131072u32 ; const ALLOW_TRANSFORM = 262144u32 ; } }
-bitflags! { # [doc = "SPIR-V operand kind: [SelectionControl](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_selection_control_a_selection_control)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct SelectionControl : u32 { const NONE = 0u32 ; const FLATTEN = 1u32 ; const DONT_FLATTEN = 2u32 ; } }
-bitflags! { # [doc = "SPIR-V operand kind: [LoopControl](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_loop_control_a_loop_control)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct LoopControl : u32 { const NONE = 0u32 ; const UNROLL = 1u32 ; const DONT_UNROLL = 2u32 ; const DEPENDENCY_INFINITE = 4u32 ; const DEPENDENCY_LENGTH = 8u32 ; const MIN_ITERATIONS = 16u32 ; const MAX_ITERATIONS = 32u32 ; const ITERATION_MULTIPLE = 64u32 ; const PEEL_COUNT = 128u32 ; const PARTIAL_COUNT = 256u32 ; const INITIATION_INTERVAL_INTEL = 65536u32 ; const MAX_CONCURRENCY_INTEL = 131072u32 ; const DEPENDENCY_ARRAY_INTEL = 262144u32 ; const PIPELINE_ENABLE_INTEL = 524288u32 ; const LOOP_COALESCE_INTEL = 1048576u32 ; const MAX_INTERLEAVING_INTEL = 2097152u32 ; const SPECULATED_ITERATIONS_INTEL = 4194304u32 ; const NO_FUSION_INTEL = 8388608u32 ; const LOOP_COUNT_INTEL = 16777216u32 ; const MAX_REINVOCATION_DELAY_INTEL = 33554432u32 ; } }
-bitflags! { # [doc = "SPIR-V operand kind: [FunctionControl](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_function_control_a_function_control)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct FunctionControl : u32 { const NONE = 0u32 ; const INLINE = 1u32 ; const DONT_INLINE = 2u32 ; const PURE = 4u32 ; const CONST = 8u32 ; const OPT_NONE_EXT = 65536u32 ; } }
-bitflags! { # [doc = "SPIR-V operand kind: [MemorySemantics](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_memory_semantics_a_memory_semantics)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct MemorySemantics : u32 { const RELAXED = 0u32 ; const ACQUIRE = 2u32 ; const RELEASE = 4u32 ; const ACQUIRE_RELEASE = 8u32 ; const SEQUENTIALLY_CONSISTENT = 16u32 ; const UNIFORM_MEMORY = 64u32 ; const SUBGROUP_MEMORY = 128u32 ; const WORKGROUP_MEMORY = 256u32 ; const CROSS_WORKGROUP_MEMORY = 512u32 ; const ATOMIC_COUNTER_MEMORY = 1024u32 ; const IMAGE_MEMORY = 2048u32 ; const OUTPUT_MEMORY = 4096u32 ; const MAKE_AVAILABLE = 8192u32 ; const MAKE_VISIBLE = 16384u32 ; const VOLATILE = 32768u32 ; } }
-bitflags! { # [doc = "SPIR-V operand kind: [MemoryAccess](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_memory_access_a_memory_access)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct MemoryAccess : u32 { const NONE = 0u32 ; const VOLATILE = 1u32 ; const ALIGNED = 2u32 ; const NONTEMPORAL = 4u32 ; const MAKE_POINTER_AVAILABLE = 8u32 ; const MAKE_POINTER_VISIBLE = 16u32 ; const NON_PRIVATE_POINTER = 32u32 ; const ALIAS_SCOPE_INTEL_MASK = 65536u32 ; const NO_ALIAS_INTEL_MASK = 131072u32 ; } }
-bitflags! { # [doc = "SPIR-V operand kind: [KernelProfilingInfo](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_kernel_profiling_info_a_kernel_profiling_info)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct KernelProfilingInfo : u32 { const NONE = 0u32 ; const CMD_EXEC_TIME = 1u32 ; } }
-bitflags! { # [doc = "SPIR-V operand kind: [RayFlags](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_ray_flags_a_ray_flags)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct RayFlags : u32 { const NONE_KHR = 0u32 ; const OPAQUE_KHR = 1u32 ; const NO_OPAQUE_KHR = 2u32 ; const TERMINATE_ON_FIRST_HIT_KHR = 4u32 ; const SKIP_CLOSEST_HIT_SHADER_KHR = 8u32 ; const CULL_BACK_FACING_TRIANGLES_KHR = 16u32 ; const CULL_FRONT_FACING_TRIANGLES_KHR = 32u32 ; const CULL_OPAQUE_KHR = 64u32 ; const CULL_NO_OPAQUE_KHR = 128u32 ; const SKIP_TRIANGLES_KHR = 256u32 ; const SKIP_AAB_BS_KHR = 512u32 ; const FORCE_OPACITY_MICROMAP2_STATE_EXT = 1024u32 ; } }
-bitflags! { # [doc = "SPIR-V operand kind: [FragmentShadingRate](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_fragment_shading_rate_a_fragment_shading_rate)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct FragmentShadingRate : u32 { const VERTICAL2_PIXELS = 1u32 ; const VERTICAL4_PIXELS = 2u32 ; const HORIZONTAL2_PIXELS = 4u32 ; const HORIZONTAL4_PIXELS = 8u32 ; } }
-bitflags! { # [doc = "SPIR-V operand kind: [RawAccessChainOperands](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_raw_access_chain_operands_a_raw_access_chain_operands)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct RawAccessChainOperands : u32 { const NONE = 0u32 ; const ROBUSTNESS_PER_COMPONENT_NV = 1u32 ; const ROBUSTNESS_PER_ELEMENT_NV = 2u32 ; } }
-#[doc = "SPIR-V operand kind: [SourceLanguage](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_source_language_a_source_language)"]
+bitflags! { # [doc = "SPIR-V operand kind: [ImageOperands]([ImageOperands](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_image_operands_a_image_operands)#_a_id_image_operands_a_image_operands)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct ImageOperands : u32 { const NONE = 0u32 ; const BIAS = 1u32 ; const LOD = 2u32 ; const GRAD = 4u32 ; const CONST_OFFSET = 8u32 ; const OFFSET = 16u32 ; const CONST_OFFSETS = 32u32 ; const SAMPLE = 64u32 ; const MIN_LOD = 128u32 ; const MAKE_TEXEL_AVAILABLE = 256u32 ; const MAKE_TEXEL_VISIBLE = 512u32 ; const NON_PRIVATE_TEXEL = 1024u32 ; const VOLATILE_TEXEL = 2048u32 ; const SIGN_EXTEND = 4096u32 ; const ZERO_EXTEND = 8192u32 ; const NONTEMPORAL = 16384u32 ; const OFFSETS = 65536u32 ; } }
+bitflags! { # [doc = "SPIR-V operand kind: [FPFastMathMode]([FPFastMathMode](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_fp_fast_math_mode_a_fp_fast_math_mode)#_a_id_fp_fast_math_mode_a_fp_fast_math_mode)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct FPFastMathMode : u32 { const NONE = 0u32 ; const NOT_NAN = 1u32 ; const NOT_INF = 2u32 ; const NSZ = 4u32 ; const ALLOW_RECIP = 8u32 ; const FAST = 16u32 ; const ALLOW_CONTRACT = 65536u32 ; const ALLOW_REASSOC = 131072u32 ; const ALLOW_TRANSFORM = 262144u32 ; } }
+bitflags! { # [doc = "SPIR-V operand kind: [SelectionControl]([SelectionControl](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_selection_control_a_selection_control)#_a_id_selection_control_a_selection_control)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct SelectionControl : u32 { const NONE = 0u32 ; const FLATTEN = 1u32 ; const DONT_FLATTEN = 2u32 ; } }
+bitflags! { # [doc = "SPIR-V operand kind: [LoopControl]([LoopControl](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_loop_control_a_loop_control)#_a_id_loop_control_a_loop_control)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct LoopControl : u32 { const NONE = 0u32 ; const UNROLL = 1u32 ; const DONT_UNROLL = 2u32 ; const DEPENDENCY_INFINITE = 4u32 ; const DEPENDENCY_LENGTH = 8u32 ; const MIN_ITERATIONS = 16u32 ; const MAX_ITERATIONS = 32u32 ; const ITERATION_MULTIPLE = 64u32 ; const PEEL_COUNT = 128u32 ; const PARTIAL_COUNT = 256u32 ; const INITIATION_INTERVAL_INTEL = 65536u32 ; const MAX_CONCURRENCY_INTEL = 131072u32 ; const DEPENDENCY_ARRAY_INTEL = 262144u32 ; const PIPELINE_ENABLE_INTEL = 524288u32 ; const LOOP_COALESCE_INTEL = 1048576u32 ; const MAX_INTERLEAVING_INTEL = 2097152u32 ; const SPECULATED_ITERATIONS_INTEL = 4194304u32 ; const NO_FUSION_INTEL = 8388608u32 ; const LOOP_COUNT_INTEL = 16777216u32 ; const MAX_REINVOCATION_DELAY_INTEL = 33554432u32 ; } }
+bitflags! { # [doc = "SPIR-V operand kind: [FunctionControl]([FunctionControl](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_function_control_a_function_control)#_a_id_function_control_a_function_control)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct FunctionControl : u32 { const NONE = 0u32 ; const INLINE = 1u32 ; const DONT_INLINE = 2u32 ; const PURE = 4u32 ; const CONST = 8u32 ; const OPT_NONE_EXT = 65536u32 ; } }
+bitflags! { # [doc = "SPIR-V operand kind: [MemorySemantics]([MemorySemantics](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_memory_semantics_a_memory_semantics)#_a_id_memory_semantics_a_memory_semantics)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct MemorySemantics : u32 { const RELAXED = 0u32 ; const ACQUIRE = 2u32 ; const RELEASE = 4u32 ; const ACQUIRE_RELEASE = 8u32 ; const SEQUENTIALLY_CONSISTENT = 16u32 ; const UNIFORM_MEMORY = 64u32 ; const SUBGROUP_MEMORY = 128u32 ; const WORKGROUP_MEMORY = 256u32 ; const CROSS_WORKGROUP_MEMORY = 512u32 ; const ATOMIC_COUNTER_MEMORY = 1024u32 ; const IMAGE_MEMORY = 2048u32 ; const OUTPUT_MEMORY = 4096u32 ; const MAKE_AVAILABLE = 8192u32 ; const MAKE_VISIBLE = 16384u32 ; const VOLATILE = 32768u32 ; } }
+bitflags! { # [doc = "SPIR-V operand kind: [MemoryAccess]([MemoryAccess](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_memory_access_a_memory_access)#_a_id_memory_access_a_memory_access)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct MemoryAccess : u32 { const NONE = 0u32 ; const VOLATILE = 1u32 ; const ALIGNED = 2u32 ; const NONTEMPORAL = 4u32 ; const MAKE_POINTER_AVAILABLE = 8u32 ; const MAKE_POINTER_VISIBLE = 16u32 ; const NON_PRIVATE_POINTER = 32u32 ; const ALIAS_SCOPE_INTEL_MASK = 65536u32 ; const NO_ALIAS_INTEL_MASK = 131072u32 ; } }
+bitflags! { # [doc = "SPIR-V operand kind: [KernelProfilingInfo]([KernelProfilingInfo](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_kernel_profiling_info_a_kernel_profiling_info)#_a_id_kernel_profiling_info_a_kernel_profiling_info)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct KernelProfilingInfo : u32 { const NONE = 0u32 ; const CMD_EXEC_TIME = 1u32 ; } }
+bitflags! { # [doc = "SPIR-V operand kind: [RayFlags]([RayFlags](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_ray_flags_a_ray_flags)#_a_id_ray_flags_a_ray_flags)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct RayFlags : u32 { const NONE_KHR = 0u32 ; const OPAQUE_KHR = 1u32 ; const NO_OPAQUE_KHR = 2u32 ; const TERMINATE_ON_FIRST_HIT_KHR = 4u32 ; const SKIP_CLOSEST_HIT_SHADER_KHR = 8u32 ; const CULL_BACK_FACING_TRIANGLES_KHR = 16u32 ; const CULL_FRONT_FACING_TRIANGLES_KHR = 32u32 ; const CULL_OPAQUE_KHR = 64u32 ; const CULL_NO_OPAQUE_KHR = 128u32 ; const SKIP_TRIANGLES_KHR = 256u32 ; const SKIP_AAB_BS_KHR = 512u32 ; const FORCE_OPACITY_MICROMAP2_STATE_EXT = 1024u32 ; } }
+bitflags! { # [doc = "SPIR-V operand kind: [FragmentShadingRate]([FragmentShadingRate](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_fragment_shading_rate_a_fragment_shading_rate)#_a_id_fragment_shading_rate_a_fragment_shading_rate)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct FragmentShadingRate : u32 { const VERTICAL2_PIXELS = 1u32 ; const VERTICAL4_PIXELS = 2u32 ; const HORIZONTAL2_PIXELS = 4u32 ; const HORIZONTAL4_PIXELS = 8u32 ; } }
+bitflags! { # [doc = "SPIR-V operand kind: [RawAccessChainOperands]([RawAccessChainOperands](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_raw_access_chain_operands_a_raw_access_chain_operands)#_a_id_raw_access_chain_operands_a_raw_access_chain_operands)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct RawAccessChainOperands : u32 { const NONE = 0u32 ; const ROBUSTNESS_PER_COMPONENT_NV = 1u32 ; const ROBUSTNESS_PER_ELEMENT_NV = 2u32 ; } }
+#[doc = "SPIR-V operand kind: [SourceLanguage]([SourceLanguage](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_source_language_a_source_language)#_a_id_source_language_a_source_language)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -72,7 +72,7 @@ impl core::str::FromStr for SourceLanguage {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [ExecutionModel](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_execution_model_a_execution_model)"]
+#[doc = "SPIR-V operand kind: [ExecutionModel]([ExecutionModel](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_execution_model_a_execution_model)#_a_id_execution_model_a_execution_model)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -148,7 +148,7 @@ impl core::str::FromStr for ExecutionModel {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [AddressingModel](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_addressing_model_a_addressing_model)"]
+#[doc = "SPIR-V operand kind: [AddressingModel]([AddressingModel](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_addressing_model_a_addressing_model)#_a_id_addressing_model_a_addressing_model)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -186,7 +186,7 @@ impl core::str::FromStr for AddressingModel {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [MemoryModel](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_memory_model_a_memory_model)"]
+#[doc = "SPIR-V operand kind: [MemoryModel]([MemoryModel](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_memory_model_a_memory_model)#_a_id_memory_model_a_memory_model)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -223,7 +223,7 @@ impl core::str::FromStr for MemoryModel {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [ExecutionMode](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_execution_mode_a_execution_mode)"]
+#[doc = "SPIR-V operand kind: [ExecutionMode]([ExecutionMode](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_execution_mode_a_execution_mode)#_a_id_execution_mode_a_execution_mode)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -480,7 +480,7 @@ impl core::str::FromStr for ExecutionMode {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [StorageClass](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_storage_class_a_storage_class)"]
+#[doc = "SPIR-V operand kind: [StorageClass]([StorageClass](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_storage_class_a_storage_class)#_a_id_storage_class_a_storage_class)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -588,7 +588,7 @@ impl core::str::FromStr for StorageClass {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [Dim](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_dim_a_dim)"]
+#[doc = "SPIR-V operand kind: [Dim]([Dim](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_dim_a_dim)#_a_id_dim_a_dim)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -631,7 +631,7 @@ impl core::str::FromStr for Dim {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [SamplerAddressingMode](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_sampler_addressing_mode_a_sampler_addressing_mode)"]
+#[doc = "SPIR-V operand kind: [SamplerAddressingMode]([SamplerAddressingMode](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_sampler_addressing_mode_a_sampler_addressing_mode)#_a_id_sampler_addressing_mode_a_sampler_addressing_mode)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -667,7 +667,7 @@ impl core::str::FromStr for SamplerAddressingMode {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [SamplerFilterMode](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_sampler_filter_mode_a_sampler_filter_mode)"]
+#[doc = "SPIR-V operand kind: [SamplerFilterMode]([SamplerFilterMode](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_sampler_filter_mode_a_sampler_filter_mode)#_a_id_sampler_filter_mode_a_sampler_filter_mode)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -697,7 +697,7 @@ impl core::str::FromStr for SamplerFilterMode {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [ImageFormat](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_image_format_a_image_format)"]
+#[doc = "SPIR-V operand kind: [ImageFormat]([ImageFormat](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_image_format_a_image_format)#_a_id_image_format_a_image_format)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -807,7 +807,7 @@ impl core::str::FromStr for ImageFormat {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [ImageChannelOrder](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_image_channel_order_a_image_channel_order)"]
+#[doc = "SPIR-V operand kind: [ImageChannelOrder]([ImageChannelOrder](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_image_channel_order_a_image_channel_order)#_a_id_image_channel_order_a_image_channel_order)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -873,7 +873,7 @@ impl core::str::FromStr for ImageChannelOrder {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [ImageChannelDataType](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_image_channel_data_type_a_image_channel_data_type)"]
+#[doc = "SPIR-V operand kind: [ImageChannelDataType]([ImageChannelDataType](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_image_channel_data_type_a_image_channel_data_type)#_a_id_image_channel_data_type_a_image_channel_data_type)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -952,7 +952,7 @@ impl core::str::FromStr for ImageChannelDataType {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [FPRoundingMode](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_fp_rounding_mode_a_fp_rounding_mode)"]
+#[doc = "SPIR-V operand kind: [FPRoundingMode]([FPRoundingMode](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_fp_rounding_mode_a_fp_rounding_mode)#_a_id_fp_rounding_mode_a_fp_rounding_mode)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -986,7 +986,7 @@ impl core::str::FromStr for FPRoundingMode {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [FPDenormMode](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_fp_denorm_mode_a_fp_denorm_mode)"]
+#[doc = "SPIR-V operand kind: [FPDenormMode]([FPDenormMode](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_fp_denorm_mode_a_fp_denorm_mode)#_a_id_fp_denorm_mode_a_fp_denorm_mode)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -1016,7 +1016,7 @@ impl core::str::FromStr for FPDenormMode {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [QuantizationModes](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_quantization_modes_a_quantization_modes)"]
+#[doc = "SPIR-V operand kind: [QuantizationModes]([QuantizationModes](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_quantization_modes_a_quantization_modes)#_a_id_quantization_modes_a_quantization_modes)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -1058,7 +1058,7 @@ impl core::str::FromStr for QuantizationModes {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [FPOperationMode](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_fp_operation_mode_a_fp_operation_mode)"]
+#[doc = "SPIR-V operand kind: [FPOperationMode]([FPOperationMode](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_fp_operation_mode_a_fp_operation_mode)#_a_id_fp_operation_mode_a_fp_operation_mode)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -1088,7 +1088,7 @@ impl core::str::FromStr for FPOperationMode {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [OverflowModes](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_overflow_modes_a_overflow_modes)"]
+#[doc = "SPIR-V operand kind: [OverflowModes]([OverflowModes](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_overflow_modes_a_overflow_modes)#_a_id_overflow_modes_a_overflow_modes)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -1122,7 +1122,7 @@ impl core::str::FromStr for OverflowModes {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [LinkageType](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_linkage_type_a_linkage_type)"]
+#[doc = "SPIR-V operand kind: [LinkageType]([LinkageType](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_linkage_type_a_linkage_type)#_a_id_linkage_type_a_linkage_type)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -1154,7 +1154,7 @@ impl core::str::FromStr for LinkageType {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [AccessQualifier](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_access_qualifier_a_access_qualifier)"]
+#[doc = "SPIR-V operand kind: [AccessQualifier]([AccessQualifier](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_access_qualifier_a_access_qualifier)#_a_id_access_qualifier_a_access_qualifier)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -1186,7 +1186,7 @@ impl core::str::FromStr for AccessQualifier {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [HostAccessQualifier](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_host_access_qualifier_a_host_access_qualifier)"]
+#[doc = "SPIR-V operand kind: [HostAccessQualifier]([HostAccessQualifier](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_host_access_qualifier_a_host_access_qualifier)#_a_id_host_access_qualifier_a_host_access_qualifier)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -1220,7 +1220,7 @@ impl core::str::FromStr for HostAccessQualifier {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [FunctionParameterAttribute](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_function_parameter_attribute_a_function_parameter_attribute)"]
+#[doc = "SPIR-V operand kind: [FunctionParameterAttribute]([FunctionParameterAttribute](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_function_parameter_attribute_a_function_parameter_attribute)#_a_id_function_parameter_attribute_a_function_parameter_attribute)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -1265,7 +1265,7 @@ impl core::str::FromStr for FunctionParameterAttribute {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [Decoration](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_decoration_a_decoration)"]
+#[doc = "SPIR-V operand kind: [Decoration]([Decoration](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_decoration_a_decoration)#_a_id_decoration_a_decoration)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -1642,7 +1642,7 @@ impl core::str::FromStr for Decoration {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [BuiltIn](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_built_in_a_built_in)"]
+#[doc = "SPIR-V operand kind: [BuiltIn]([BuiltIn](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_built_in_a_built_in)#_a_id_built_in_a_built_in)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -2000,7 +2000,7 @@ impl core::str::FromStr for BuiltIn {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [Scope](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_scope_a_scope)"]
+#[doc = "SPIR-V operand kind: [Scope]([Scope](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_scope_a_scope)#_a_id_scope_a_scope)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -2043,7 +2043,7 @@ impl core::str::FromStr for Scope {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [GroupOperation](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_group_operation_a_group_operation)"]
+#[doc = "SPIR-V operand kind: [GroupOperation]([GroupOperation](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_group_operation_a_group_operation)#_a_id_group_operation_a_group_operation)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -2084,7 +2084,7 @@ impl core::str::FromStr for GroupOperation {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [KernelEnqueueFlags](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_kernel_enqueue_flags_a_kernel_enqueue_flags)"]
+#[doc = "SPIR-V operand kind: [KernelEnqueueFlags]([KernelEnqueueFlags](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_kernel_enqueue_flags_a_kernel_enqueue_flags)#_a_id_kernel_enqueue_flags_a_kernel_enqueue_flags)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -2116,7 +2116,7 @@ impl core::str::FromStr for KernelEnqueueFlags {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [Capability](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_capability_a_capability)"]
+#[doc = "SPIR-V operand kind: [Capability]([Capability](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_capability_a_capability)#_a_id_capability_a_capability)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -2901,7 +2901,7 @@ impl core::str::FromStr for Capability {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [RayQueryIntersection](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_ray_query_intersection_a_ray_query_intersection)"]
+#[doc = "SPIR-V operand kind: [RayQueryIntersection]([RayQueryIntersection](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_ray_query_intersection_a_ray_query_intersection)#_a_id_ray_query_intersection_a_ray_query_intersection)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -2931,7 +2931,7 @@ impl core::str::FromStr for RayQueryIntersection {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [RayQueryCommittedIntersectionType](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_ray_query_committed_intersection_type_a_ray_query_committed_intersection_type)"]
+#[doc = "SPIR-V operand kind: [RayQueryCommittedIntersectionType]([RayQueryCommittedIntersectionType](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_ray_query_committed_intersection_type_a_ray_query_committed_intersection_type)#_a_id_ray_query_committed_intersection_type_a_ray_query_committed_intersection_type)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -2969,7 +2969,7 @@ impl core::str::FromStr for RayQueryCommittedIntersectionType {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [RayQueryCandidateIntersectionType](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_ray_query_candidate_intersection_type_a_ray_query_candidate_intersection_type)"]
+#[doc = "SPIR-V operand kind: [RayQueryCandidateIntersectionType]([RayQueryCandidateIntersectionType](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_ray_query_candidate_intersection_type_a_ray_query_candidate_intersection_type)#_a_id_ray_query_candidate_intersection_type_a_ray_query_candidate_intersection_type)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -3003,7 +3003,7 @@ impl core::str::FromStr for RayQueryCandidateIntersectionType {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [PackedVectorFormat](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_packed_vector_format_a_packed_vector_format)"]
+#[doc = "SPIR-V operand kind: [PackedVectorFormat]([PackedVectorFormat](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_packed_vector_format_a_packed_vector_format)#_a_id_packed_vector_format_a_packed_vector_format)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -3034,8 +3034,8 @@ impl core::str::FromStr for PackedVectorFormat {
         })
     }
 }
-bitflags! { # [doc = "SPIR-V operand kind: [CooperativeMatrixOperands](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_cooperative_matrix_operands_a_cooperative_matrix_operands)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct CooperativeMatrixOperands : u32 { const NONE_KHR = 0u32 ; const MATRIX_A_SIGNED_COMPONENTS_KHR = 1u32 ; const MATRIX_B_SIGNED_COMPONENTS_KHR = 2u32 ; const MATRIX_C_SIGNED_COMPONENTS_KHR = 4u32 ; const MATRIX_RESULT_SIGNED_COMPONENTS_KHR = 8u32 ; const SATURATING_ACCUMULATION_KHR = 16u32 ; } }
-#[doc = "SPIR-V operand kind: [CooperativeMatrixLayout](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_cooperative_matrix_layout_a_cooperative_matrix_layout)"]
+bitflags! { # [doc = "SPIR-V operand kind: [CooperativeMatrixOperands]([CooperativeMatrixOperands](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_cooperative_matrix_operands_a_cooperative_matrix_operands)#_a_id_cooperative_matrix_operands_a_cooperative_matrix_operands)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct CooperativeMatrixOperands : u32 { const NONE_KHR = 0u32 ; const MATRIX_A_SIGNED_COMPONENTS_KHR = 1u32 ; const MATRIX_B_SIGNED_COMPONENTS_KHR = 2u32 ; const MATRIX_C_SIGNED_COMPONENTS_KHR = 4u32 ; const MATRIX_RESULT_SIGNED_COMPONENTS_KHR = 8u32 ; const SATURATING_ACCUMULATION_KHR = 16u32 ; } }
+#[doc = "SPIR-V operand kind: [CooperativeMatrixLayout]([CooperativeMatrixLayout](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_cooperative_matrix_layout_a_cooperative_matrix_layout)#_a_id_cooperative_matrix_layout_a_cooperative_matrix_layout)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -3070,7 +3070,7 @@ impl core::str::FromStr for CooperativeMatrixLayout {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [CooperativeMatrixUse](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_cooperative_matrix_use_a_cooperative_matrix_use)"]
+#[doc = "SPIR-V operand kind: [CooperativeMatrixUse]([CooperativeMatrixUse](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_cooperative_matrix_use_a_cooperative_matrix_use)#_a_id_cooperative_matrix_use_a_cooperative_matrix_use)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -3102,8 +3102,8 @@ impl core::str::FromStr for CooperativeMatrixUse {
         })
     }
 }
-bitflags! { # [doc = "SPIR-V operand kind: [CooperativeMatrixReduce](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_cooperative_matrix_reduce_a_cooperative_matrix_reduce)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct CooperativeMatrixReduce : u32 { const ROW = 1u32 ; const COLUMN = 2u32 ; const _2X2 = 4u32 ; } }
-#[doc = "SPIR-V operand kind: [TensorClampMode](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_tensor_clamp_mode_a_tensor_clamp_mode)"]
+bitflags! { # [doc = "SPIR-V operand kind: [CooperativeMatrixReduce]([CooperativeMatrixReduce](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_cooperative_matrix_reduce_a_cooperative_matrix_reduce)#_a_id_cooperative_matrix_reduce_a_cooperative_matrix_reduce)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct CooperativeMatrixReduce : u32 { const ROW = 1u32 ; const COLUMN = 2u32 ; const _2X2 = 4u32 ; } }
+#[doc = "SPIR-V operand kind: [TensorClampMode]([TensorClampMode](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_tensor_clamp_mode_a_tensor_clamp_mode)#_a_id_tensor_clamp_mode_a_tensor_clamp_mode)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -3139,8 +3139,8 @@ impl core::str::FromStr for TensorClampMode {
         })
     }
 }
-bitflags! { # [doc = "SPIR-V operand kind: [TensorAddressingOperands](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_tensor_addressing_operands_a_tensor_addressing_operands)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct TensorAddressingOperands : u32 { const NONE = 0u32 ; const TENSOR_VIEW = 1u32 ; const DECODE_FUNC = 2u32 ; } }
-#[doc = "SPIR-V operand kind: [InitializationModeQualifier](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_initialization_mode_qualifier_a_initialization_mode_qualifier)"]
+bitflags! { # [doc = "SPIR-V operand kind: [TensorAddressingOperands]([TensorAddressingOperands](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_tensor_addressing_operands_a_tensor_addressing_operands)#_a_id_tensor_addressing_operands_a_tensor_addressing_operands)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct TensorAddressingOperands : u32 { const NONE = 0u32 ; const TENSOR_VIEW = 1u32 ; const DECODE_FUNC = 2u32 ; } }
+#[doc = "SPIR-V operand kind: [InitializationModeQualifier]([InitializationModeQualifier](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_initialization_mode_qualifier_a_initialization_mode_qualifier)#_a_id_initialization_mode_qualifier_a_initialization_mode_qualifier)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -3170,7 +3170,7 @@ impl core::str::FromStr for InitializationModeQualifier {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [LoadCacheControl](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_load_cache_control_a_load_cache_control)"]
+#[doc = "SPIR-V operand kind: [LoadCacheControl]([LoadCacheControl](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_load_cache_control_a_load_cache_control)#_a_id_load_cache_control_a_load_cache_control)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -3206,7 +3206,7 @@ impl core::str::FromStr for LoadCacheControl {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [StoreCacheControl](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_store_cache_control_a_store_cache_control)"]
+#[doc = "SPIR-V operand kind: [StoreCacheControl]([StoreCacheControl](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_store_cache_control_a_store_cache_control)#_a_id_store_cache_control_a_store_cache_control)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -3240,7 +3240,7 @@ impl core::str::FromStr for StoreCacheControl {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [NamedMaximumNumberOfRegisters](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_named_maximum_number_of_registers_a_named_maximum_number_of_registers)"]
+#[doc = "SPIR-V operand kind: [NamedMaximumNumberOfRegisters]([NamedMaximumNumberOfRegisters](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_named_maximum_number_of_registers_a_named_maximum_number_of_registers)#_a_id_named_maximum_number_of_registers_a_named_maximum_number_of_registers)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -3268,8 +3268,8 @@ impl core::str::FromStr for NamedMaximumNumberOfRegisters {
         })
     }
 }
-bitflags! { # [doc = "SPIR-V operand kind: [MatrixMultiplyAccumulateOperands](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_matrix_multiply_accumulate_operands_a_matrix_multiply_accumulate_operands)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct MatrixMultiplyAccumulateOperands : u32 { const NONE = 0u32 ; const MATRIX_A_SIGNED_COMPONENTS_INTEL = 1u32 ; const MATRIX_B_SIGNED_COMPONENTS_INTEL = 2u32 ; const MATRIX_CB_FLOAT16_INTEL = 4u32 ; const MATRIX_RESULT_B_FLOAT16_INTEL = 8u32 ; const MATRIX_A_PACKED_INT8_INTEL = 16u32 ; const MATRIX_B_PACKED_INT8_INTEL = 32u32 ; const MATRIX_A_PACKED_INT4_INTEL = 64u32 ; const MATRIX_B_PACKED_INT4_INTEL = 128u32 ; const MATRIX_ATF32INTEL = 256u32 ; const MATRIX_BTF32INTEL = 512u32 ; const MATRIX_A_PACKED_FLOAT16_INTEL = 1024u32 ; const MATRIX_B_PACKED_FLOAT16_INTEL = 2048u32 ; const MATRIX_A_PACKED_B_FLOAT16_INTEL = 4096u32 ; const MATRIX_B_PACKED_B_FLOAT16_INTEL = 8192u32 ; } }
-#[doc = "SPIR-V operand kind: [FPEncoding](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_fp_encoding_a_fp_encoding)"]
+bitflags! { # [doc = "SPIR-V operand kind: [MatrixMultiplyAccumulateOperands]([MatrixMultiplyAccumulateOperands](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_matrix_multiply_accumulate_operands_a_matrix_multiply_accumulate_operands)#_a_id_matrix_multiply_accumulate_operands_a_matrix_multiply_accumulate_operands)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct MatrixMultiplyAccumulateOperands : u32 { const NONE = 0u32 ; const MATRIX_A_SIGNED_COMPONENTS_INTEL = 1u32 ; const MATRIX_B_SIGNED_COMPONENTS_INTEL = 2u32 ; const MATRIX_CB_FLOAT16_INTEL = 4u32 ; const MATRIX_RESULT_B_FLOAT16_INTEL = 8u32 ; const MATRIX_A_PACKED_INT8_INTEL = 16u32 ; const MATRIX_B_PACKED_INT8_INTEL = 32u32 ; const MATRIX_A_PACKED_INT4_INTEL = 64u32 ; const MATRIX_B_PACKED_INT4_INTEL = 128u32 ; const MATRIX_ATF32INTEL = 256u32 ; const MATRIX_BTF32INTEL = 512u32 ; const MATRIX_A_PACKED_FLOAT16_INTEL = 1024u32 ; const MATRIX_B_PACKED_FLOAT16_INTEL = 2048u32 ; const MATRIX_A_PACKED_B_FLOAT16_INTEL = 4096u32 ; const MATRIX_B_PACKED_B_FLOAT16_INTEL = 8192u32 ; } }
+#[doc = "SPIR-V operand kind: [FPEncoding]([FPEncoding](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_fp_encoding_a_fp_encoding)#_a_id_fp_encoding_a_fp_encoding)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -3302,7 +3302,7 @@ impl core::str::FromStr for FPEncoding {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [CooperativeVectorMatrixLayout](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_cooperative_vector_matrix_layout_a_cooperative_vector_matrix_layout)"]
+#[doc = "SPIR-V operand kind: [CooperativeVectorMatrixLayout]([CooperativeVectorMatrixLayout](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_cooperative_vector_matrix_layout_a_cooperative_vector_matrix_layout)#_a_id_cooperative_vector_matrix_layout_a_cooperative_vector_matrix_layout)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -3336,7 +3336,7 @@ impl core::str::FromStr for CooperativeVectorMatrixLayout {
         })
     }
 }
-#[doc = "SPIR-V operand kind: [ComponentType](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_component_type_a_component_type)"]
+#[doc = "SPIR-V operand kind: [ComponentType]([ComponentType](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_component_type_a_component_type)#_a_id_component_type_a_component_type)"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serialize", derive(serde::Serialize))]
@@ -3395,7 +3395,7 @@ impl core::str::FromStr for ComponentType {
         })
     }
 }
-bitflags! { # [doc = "SPIR-V operand kind: [TensorOperands](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_tensor_operands_a_tensor_operands)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct TensorOperands : u32 { const NONE_ARM = 0u32 ; const NONTEMPORAL_ARM = 1u32 ; const OUT_OF_BOUNDS_VALUE_ARM = 2u32 ; const MAKE_ELEMENT_AVAILABLE_ARM = 4u32 ; const MAKE_ELEMENT_VISIBLE_ARM = 8u32 ; const NON_PRIVATE_ELEMENT_ARM = 16u32 ; } }
+bitflags! { # [doc = "SPIR-V operand kind: [TensorOperands]([TensorOperands](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_tensor_operands_a_tensor_operands)#_a_id_tensor_operands_a_tensor_operands)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct TensorOperands : u32 { const NONE_ARM = 0u32 ; const NONTEMPORAL_ARM = 1u32 ; const OUT_OF_BOUNDS_VALUE_ARM = 2u32 ; const MAKE_ELEMENT_AVAILABLE_ARM = 4u32 ; const MAKE_ELEMENT_VISIBLE_ARM = 8u32 ; const NON_PRIVATE_ELEMENT_ARM = 16u32 ; } }
 #[doc = "SPIR-V [instructions](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_instructions_a_instructions) opcodes"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -4320,298 +4320,4 @@ impl Op {
     pub const DemoteToHelperInvocationEXT: Op = Op::DemoteToHelperInvocation;
     pub const DecorateStringGOOGLE: Op = Op::DecorateString;
     pub const MemberDecorateStringGOOGLE: Op = Op::MemberDecorateString;
-}
-#[doc = "[GLSL.std.450](https://www.khronos.org/registry/spir-v/specs/unified1/GLSL.std.450.html) extended instruction opcode"]
-#[repr(u32)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = "serialize", derive(serde::Serialize))]
-#[cfg_attr(feature = "deserialize", derive(serde::Deserialize))]
-#[allow(clippy::upper_case_acronyms)]
-pub enum GLOp {
-    Round = 1u32,
-    RoundEven = 2u32,
-    Trunc = 3u32,
-    FAbs = 4u32,
-    SAbs = 5u32,
-    FSign = 6u32,
-    SSign = 7u32,
-    Floor = 8u32,
-    Ceil = 9u32,
-    Fract = 10u32,
-    Radians = 11u32,
-    Degrees = 12u32,
-    Sin = 13u32,
-    Cos = 14u32,
-    Tan = 15u32,
-    Asin = 16u32,
-    Acos = 17u32,
-    Atan = 18u32,
-    Sinh = 19u32,
-    Cosh = 20u32,
-    Tanh = 21u32,
-    Asinh = 22u32,
-    Acosh = 23u32,
-    Atanh = 24u32,
-    Atan2 = 25u32,
-    Pow = 26u32,
-    Exp = 27u32,
-    Log = 28u32,
-    Exp2 = 29u32,
-    Log2 = 30u32,
-    Sqrt = 31u32,
-    InverseSqrt = 32u32,
-    Determinant = 33u32,
-    MatrixInverse = 34u32,
-    Modf = 35u32,
-    ModfStruct = 36u32,
-    FMin = 37u32,
-    UMin = 38u32,
-    SMin = 39u32,
-    FMax = 40u32,
-    UMax = 41u32,
-    SMax = 42u32,
-    FClamp = 43u32,
-    UClamp = 44u32,
-    SClamp = 45u32,
-    FMix = 46u32,
-    IMix = 47u32,
-    Step = 48u32,
-    SmoothStep = 49u32,
-    Fma = 50u32,
-    Frexp = 51u32,
-    FrexpStruct = 52u32,
-    Ldexp = 53u32,
-    PackSnorm4x8 = 54u32,
-    PackUnorm4x8 = 55u32,
-    PackSnorm2x16 = 56u32,
-    PackUnorm2x16 = 57u32,
-    PackHalf2x16 = 58u32,
-    PackDouble2x32 = 59u32,
-    UnpackSnorm2x16 = 60u32,
-    UnpackUnorm2x16 = 61u32,
-    UnpackHalf2x16 = 62u32,
-    UnpackSnorm4x8 = 63u32,
-    UnpackUnorm4x8 = 64u32,
-    UnpackDouble2x32 = 65u32,
-    Length = 66u32,
-    Distance = 67u32,
-    Cross = 68u32,
-    Normalize = 69u32,
-    FaceForward = 70u32,
-    Reflect = 71u32,
-    Refract = 72u32,
-    FindILsb = 73u32,
-    FindSMsb = 74u32,
-    FindUMsb = 75u32,
-    InterpolateAtCentroid = 76u32,
-    InterpolateAtSample = 77u32,
-    InterpolateAtOffset = 78u32,
-    NMin = 79u32,
-    NMax = 80u32,
-    NClamp = 81u32,
-}
-impl GLOp {
-    pub fn from_u32(n: u32) -> Option<Self> {
-        Some(match n {
-            1u32..=81u32 => unsafe { core::mem::transmute::<u32, GLOp>(n) },
-            _ => return None,
-        })
-    }
-}
-#[doc = "[OpenCL.std.100](https://www.khronos.org/registry/spir-v/specs/unified1/OpenCL.ExtendedInstructionSet.100.html) extended instruction opcode"]
-#[repr(u32)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = "serialize", derive(serde::Serialize))]
-#[cfg_attr(feature = "deserialize", derive(serde::Deserialize))]
-#[allow(clippy::upper_case_acronyms)]
-pub enum CLOp {
-    acos = 0u32,
-    acosh = 1u32,
-    acospi = 2u32,
-    asin = 3u32,
-    asinh = 4u32,
-    asinpi = 5u32,
-    atan = 6u32,
-    atan2 = 7u32,
-    atanh = 8u32,
-    atanpi = 9u32,
-    atan2pi = 10u32,
-    cbrt = 11u32,
-    ceil = 12u32,
-    copysign = 13u32,
-    cos = 14u32,
-    cosh = 15u32,
-    cospi = 16u32,
-    erfc = 17u32,
-    erf = 18u32,
-    exp = 19u32,
-    exp2 = 20u32,
-    exp10 = 21u32,
-    expm1 = 22u32,
-    fabs = 23u32,
-    fdim = 24u32,
-    floor = 25u32,
-    fma = 26u32,
-    fmax = 27u32,
-    fmin = 28u32,
-    fmod = 29u32,
-    fract = 30u32,
-    frexp = 31u32,
-    hypot = 32u32,
-    ilogb = 33u32,
-    ldexp = 34u32,
-    lgamma = 35u32,
-    lgamma_r = 36u32,
-    log = 37u32,
-    log2 = 38u32,
-    log10 = 39u32,
-    log1p = 40u32,
-    logb = 41u32,
-    mad = 42u32,
-    maxmag = 43u32,
-    minmag = 44u32,
-    modf = 45u32,
-    nan = 46u32,
-    nextafter = 47u32,
-    pow = 48u32,
-    pown = 49u32,
-    powr = 50u32,
-    remainder = 51u32,
-    remquo = 52u32,
-    rint = 53u32,
-    rootn = 54u32,
-    round = 55u32,
-    rsqrt = 56u32,
-    sin = 57u32,
-    sincos = 58u32,
-    sinh = 59u32,
-    sinpi = 60u32,
-    sqrt = 61u32,
-    tan = 62u32,
-    tanh = 63u32,
-    tanpi = 64u32,
-    tgamma = 65u32,
-    trunc = 66u32,
-    half_cos = 67u32,
-    half_divide = 68u32,
-    half_exp = 69u32,
-    half_exp2 = 70u32,
-    half_exp10 = 71u32,
-    half_log = 72u32,
-    half_log2 = 73u32,
-    half_log10 = 74u32,
-    half_powr = 75u32,
-    half_recip = 76u32,
-    half_rsqrt = 77u32,
-    half_sin = 78u32,
-    half_sqrt = 79u32,
-    half_tan = 80u32,
-    native_cos = 81u32,
-    native_divide = 82u32,
-    native_exp = 83u32,
-    native_exp2 = 84u32,
-    native_exp10 = 85u32,
-    native_log = 86u32,
-    native_log2 = 87u32,
-    native_log10 = 88u32,
-    native_powr = 89u32,
-    native_recip = 90u32,
-    native_rsqrt = 91u32,
-    native_sin = 92u32,
-    native_sqrt = 93u32,
-    native_tan = 94u32,
-    fclamp = 95u32,
-    degrees = 96u32,
-    fmax_common = 97u32,
-    fmin_common = 98u32,
-    mix = 99u32,
-    radians = 100u32,
-    step = 101u32,
-    smoothstep = 102u32,
-    sign = 103u32,
-    cross = 104u32,
-    distance = 105u32,
-    length = 106u32,
-    normalize = 107u32,
-    fast_distance = 108u32,
-    fast_length = 109u32,
-    fast_normalize = 110u32,
-    s_abs = 141u32,
-    s_abs_diff = 142u32,
-    s_add_sat = 143u32,
-    u_add_sat = 144u32,
-    s_hadd = 145u32,
-    u_hadd = 146u32,
-    s_rhadd = 147u32,
-    u_rhadd = 148u32,
-    s_clamp = 149u32,
-    u_clamp = 150u32,
-    clz = 151u32,
-    ctz = 152u32,
-    s_mad_hi = 153u32,
-    u_mad_sat = 154u32,
-    s_mad_sat = 155u32,
-    s_max = 156u32,
-    u_max = 157u32,
-    s_min = 158u32,
-    u_min = 159u32,
-    s_mul_hi = 160u32,
-    rotate = 161u32,
-    s_sub_sat = 162u32,
-    u_sub_sat = 163u32,
-    u_upsample = 164u32,
-    s_upsample = 165u32,
-    popcount = 166u32,
-    s_mad24 = 167u32,
-    u_mad24 = 168u32,
-    s_mul24 = 169u32,
-    u_mul24 = 170u32,
-    vloadn = 171u32,
-    vstoren = 172u32,
-    vload_half = 173u32,
-    vload_halfn = 174u32,
-    vstore_half = 175u32,
-    vstore_half_r = 176u32,
-    vstore_halfn = 177u32,
-    vstore_halfn_r = 178u32,
-    vloada_halfn = 179u32,
-    vstorea_halfn = 180u32,
-    vstorea_halfn_r = 181u32,
-    shuffle = 182u32,
-    shuffle2 = 183u32,
-    printf = 184u32,
-    prefetch = 185u32,
-    bitselect = 186u32,
-    select = 187u32,
-    u_abs = 201u32,
-    u_abs_diff = 202u32,
-    u_mul_hi = 203u32,
-    u_mad_hi = 204u32,
-}
-impl CLOp {
-    pub fn from_u32(n: u32) -> Option<Self> {
-        Some(match n {
-            0u32..=110u32 => unsafe { core::mem::transmute::<u32, CLOp>(n) },
-            141u32..=187u32 => unsafe { core::mem::transmute::<u32, CLOp>(n) },
-            201u32..=204u32 => unsafe { core::mem::transmute::<u32, CLOp>(n) },
-            _ => return None,
-        })
-    }
-}
-#[doc = "[NonSemantic.DebugPrintF](https://github.com/KhronosGroup/Vulkan-ValidationLayers/blob/master/docs/debug_printf.md) extended instruction opcode"]
-#[repr(u32)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = "serialize", derive(serde::Serialize))]
-#[cfg_attr(feature = "deserialize", derive(serde::Deserialize))]
-#[allow(clippy::upper_case_acronyms)]
-pub enum DebugPrintFOp {
-    DebugPrintf = 1u32,
-}
-impl DebugPrintFOp {
-    pub fn from_u32(n: u32) -> Option<Self> {
-        Some(match n {
-            1u32 => unsafe { core::mem::transmute::<u32, DebugPrintFOp>(1u32) },
-            _ => return None,
-        })
-    }
 }

@@ -7,13 +7,13 @@ use quote::quote;
 use std::cmp::Ordering;
 use std::collections::BTreeMap;
 
+const SPEC_URL: &str = "https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html";
+
 /// Returns the markdown string containing a link to the spec for the given
 /// operand `kind`.
-fn get_spec_link(kind: &str) -> String {
+fn get_spec_link(url: &str, kind: &str) -> String {
     let symbol = kind.to_snake_case();
-    format!(
-        "[{kind}](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_{symbol}_a_{symbol})",
-    )
+    format!("[{kind}]({url}#_a_id_{symbol}_a_{symbol})",)
 }
 
 fn value_enum_attribute() -> TokenStream {
@@ -103,7 +103,7 @@ fn generate_enum(
     }
 }
 
-fn gen_bit_enum_operand_kind(grammar: &structs::OperandKind) -> TokenStream {
+fn gen_bit_enum_operand_kind(spec_url: &str, grammar: &structs::OperandKind) -> TokenStream {
     let mut elements = vec![];
     let mut operands = vec![];
     let mut additional_operands_list = vec![];
@@ -150,7 +150,10 @@ fn gen_bit_enum_operand_kind(grammar: &structs::OperandKind) -> TokenStream {
         }
     }
 
-    let comment = format!("SPIR-V operand kind: {}", get_spec_link(&grammar.kind));
+    let comment = format!(
+        "SPIR-V operand kind: {}",
+        get_spec_link(spec_url, &grammar.kind)
+    );
     let kind = as_ident(&grammar.kind);
     let attribute = bit_enum_attribute();
 
@@ -165,7 +168,7 @@ fn gen_bit_enum_operand_kind(grammar: &structs::OperandKind) -> TokenStream {
     }
 }
 
-fn gen_value_enum_operand_kind(grammar: &structs::OperandKind) -> TokenStream {
+fn gen_value_enum_operand_kind(spec_url: &str, grammar: &structs::OperandKind) -> TokenStream {
     let kind = as_ident(&grammar.kind);
 
     // We can have more than one enumerants mapping to the same discriminator.
@@ -231,7 +234,10 @@ fn gen_value_enum_operand_kind(grammar: &structs::OperandKind) -> TokenStream {
     let the_enum = generate_enum(
         &kind,
         &variants,
-        &format!("SPIR-V operand kind: {}", get_spec_link(&grammar.kind)),
+        &format!(
+            "SPIR-V operand kind: {}",
+            get_spec_link(spec_url, &grammar.kind)
+        ),
     );
 
     // TODO: Only FPEncoding doesn't list any valid values besides a "Max". This type shouldn't be
@@ -263,11 +269,11 @@ fn gen_value_enum_operand_kind(grammar: &structs::OperandKind) -> TokenStream {
 
 /// Returns the code defining the enum for an operand kind by parsing
 /// the given SPIR-V `grammar`.
-fn gen_operand_kind(grammar: &structs::OperandKind) -> Option<TokenStream> {
+pub fn gen_operand_kind(spec_url: &str, grammar: &structs::OperandKind) -> Option<TokenStream> {
     use structs::Category::*;
     match grammar.category {
-        BitEnum => Some(gen_bit_enum_operand_kind(grammar)),
-        ValueEnum => Some(gen_value_enum_operand_kind(grammar)),
+        BitEnum => Some(gen_bit_enum_operand_kind(spec_url, grammar)),
+        ValueEnum => Some(gen_value_enum_operand_kind(spec_url, grammar)),
         _ => None,
     }
 }
@@ -283,7 +289,10 @@ pub fn gen_spirv_header(grammar: &structs::Grammar) -> TokenStream {
     let revision = grammar.revision;
 
     // Operand kinds.
-    let kinds = grammar.operand_kinds.iter().filter_map(gen_operand_kind);
+    let kinds = grammar
+        .operand_kinds
+        .iter()
+        .filter_map(|it| gen_operand_kind(&get_spec_link(SPEC_URL, &it.kind), it));
 
     // Opcodes.
 
@@ -306,7 +315,7 @@ pub fn gen_spirv_header(grammar: &structs::Grammar) -> TokenStream {
     let the_enum = generate_enum(
         &as_ident("Op"),
         &variants,
-        &format!("SPIR-V {} opcodes", get_spec_link("instructions")),
+        &format!("SPIR-V {} opcodes", get_spec_link(SPEC_URL, "instructions")),
     );
 
     quote! {
@@ -329,19 +338,67 @@ pub fn gen_spirv_header(grammar: &structs::Grammar) -> TokenStream {
     }
 }
 
-/// Returns extended instruction opcodes
-pub fn gen_opcodes(op: &str, grammar: &structs::ExtInstSetGrammar, comment: &str) -> TokenStream {
-    let op = as_ident(op);
-    // Get the instruction table.
-    let variants = grammar
-        .instructions
-        .iter()
-        .map(|inst| {
-            let opname = as_ident(&inst.opname);
-            let opcode = inst.opcode;
-            (opcode, opname)
-        })
-        .collect::<Vec<_>>();
+pub fn gen_spirv_ext_header(
+    op_name: &str,
+    url: &str,
+    grammar: &structs::ExtInstSetGrammar,
+) -> TokenStream {
+    let version = grammar
+        .version
+        .map(|v| v as u8)
+        .map(|version| quote![pub const VERSION: u8 = #version;]);
+    let revision = grammar.revision as u8;
 
-    generate_enum(&op, &variants, comment)
+    // Operand kinds.
+    let kinds = grammar
+        .operand_kinds
+        .iter()
+        .filter_map(|kind| gen_operand_kind(url, kind));
+
+    // Opcodes.
+
+    // We can have more than one op symbol mapping to the same opcode.
+    // Use associated constants for these aliases.
+    let mut aliases = vec![];
+    let mut variants = vec![];
+
+    // Get the instruction table.
+    for inst in &grammar.instructions {
+        let opname = as_ident(&inst.opname);
+        let opcode = inst.opcode;
+        for alias in &inst.aliases {
+            let alias = as_ident(alias);
+            aliases.push(quote! { pub const #alias: Op = Op::#opname; });
+        }
+        variants.push((opcode, opname.clone()));
+    }
+
+    let op = as_ident(op_name);
+
+    let the_enum = generate_enum(
+        &op,
+        &variants,
+        &format!(
+            "SPIR-V extension {} opcodes",
+            get_spec_link(url, "instructions")
+        ),
+    );
+
+    quote! {
+        #[allow(unused)]
+        use bitflags::bitflags;
+
+        #(#kinds)*
+
+        #the_enum
+
+        #[allow(clippy::upper_case_acronyms)]
+        #[allow(non_upper_case_globals)]
+        impl #op {
+            #version
+            pub const REVISION: u8 = #revision;
+
+            #(#aliases)*
+        }
+    }
 }
