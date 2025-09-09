@@ -76,6 +76,7 @@ pub enum OperandKind {
     PairLiteralIntegerIdRef,
     PairIdRefLiteralInteger,
     PairIdRefIdRef,
+    TensorOperands,
 }
 static INSTRUCTION_TABLE: &[Instruction<'static>] = &[
     inst!(Nop, [], [], []),
@@ -3273,6 +3274,93 @@ static INSTRUCTION_TABLE: &[Instruction<'static>] = &[
         [(IdResultType, One), (IdResult, One), (IdRef, ZeroOrOne)]
     ),
     inst!(
+        TypeTensorARM,
+        [TensorsARM],
+        [],
+        [
+            (IdResult, One),
+            (IdRef, One),
+            (IdRef, ZeroOrOne),
+            (IdRef, ZeroOrOne)
+        ]
+    ),
+    inst!(
+        TensorReadARM,
+        [TensorsARM],
+        [],
+        [
+            (IdResultType, One),
+            (IdResult, One),
+            (IdRef, One),
+            (IdRef, One),
+            (TensorOperands, ZeroOrOne)
+        ]
+    ),
+    inst!(
+        TensorWriteARM,
+        [TensorsARM],
+        [],
+        [
+            (IdRef, One),
+            (IdRef, One),
+            (IdRef, One),
+            (TensorOperands, ZeroOrOne)
+        ]
+    ),
+    inst!(
+        TensorQuerySizeARM,
+        [TensorsARM],
+        [],
+        [
+            (IdResultType, One),
+            (IdResult, One),
+            (IdRef, One),
+            (IdRef, One)
+        ]
+    ),
+    inst!(
+        GraphConstantARM,
+        [GraphARM],
+        [],
+        [(IdResultType, One), (IdResult, One), (LiteralInteger, One)]
+    ),
+    inst!(
+        GraphEntryPointARM,
+        [GraphARM],
+        [],
+        [(IdRef, One), (LiteralString, One), (IdRef, ZeroOrMore)]
+    ),
+    inst!(
+        GraphARM,
+        [GraphARM],
+        [],
+        [(IdResultType, One), (IdResult, One)]
+    ),
+    inst!(
+        GraphInputARM,
+        [GraphARM],
+        [],
+        [
+            (IdResultType, One),
+            (IdResult, One),
+            (IdRef, One),
+            (IdRef, ZeroOrMore)
+        ]
+    ),
+    inst!(
+        GraphSetOutputARM,
+        [GraphARM],
+        [],
+        [(IdRef, One), (IdRef, One), (IdRef, ZeroOrMore)]
+    ),
+    inst!(GraphEndARM, [GraphARM], [], []),
+    inst!(
+        TypeGraphARM,
+        [GraphARM],
+        [],
+        [(IdResult, One), (LiteralInteger, One), (IdRef, ZeroOrMore)]
+    ),
+    inst!(
         TerminateInvocation,
         [Shader],
         ["SPV_KHR_terminate_invocation"],
@@ -4535,11 +4623,17 @@ static INSTRUCTION_TABLE: &[Instruction<'static>] = &[
     ),
     inst!(
         TypeAccelerationStructureKHR,
-        [RayTracingNV, RayTracingKHR, RayQueryKHR],
+        [
+            RayTracingNV,
+            RayTracingKHR,
+            RayQueryKHR,
+            DisplacementMicromapNV
+        ],
         [
             "SPV_NV_ray_tracing",
             "SPV_KHR_ray_tracing",
-            "SPV_KHR_ray_query"
+            "SPV_KHR_ray_query",
+            "SPV_NV_displacement_micromap"
         ],
         [(IdResult, One)]
     ),
@@ -6496,7 +6590,6 @@ static INSTRUCTION_TABLE: &[Instruction<'static>] = &[
             (LiteralInteger, One),
             (LiteralInteger, One),
             (LiteralInteger, One),
-            (LiteralInteger, One),
             (LiteralInteger, One)
         ]
     ),
@@ -6538,6 +6631,7 @@ static INSTRUCTION_TABLE: &[Instruction<'static>] = &[
             (IdResultType, One),
             (IdResult, One),
             (IdRef, One),
+            (LiteralInteger, One),
             (LiteralInteger, One),
             (LiteralInteger, One),
             (LiteralInteger, One),
@@ -7103,6 +7197,7 @@ static INSTRUCTION_TABLE: &[Instruction<'static>] = &[
             (LiteralInteger, One),
             (LiteralInteger, One),
             (LiteralInteger, One),
+            (LiteralInteger, One),
             (LiteralInteger, One)
         ]
     ),
@@ -7138,7 +7233,6 @@ static INSTRUCTION_TABLE: &[Instruction<'static>] = &[
             (IdResultType, One),
             (IdResult, One),
             (IdRef, One),
-            (IdRef, One),
             (LiteralInteger, One),
             (LiteralInteger, One),
             (LiteralInteger, One),
@@ -7153,7 +7247,6 @@ static INSTRUCTION_TABLE: &[Instruction<'static>] = &[
         [
             (IdResultType, One),
             (IdResult, One),
-            (IdRef, One),
             (IdRef, One),
             (LiteralInteger, One),
             (LiteralInteger, One),
@@ -7170,7 +7263,6 @@ static INSTRUCTION_TABLE: &[Instruction<'static>] = &[
             (IdResultType, One),
             (IdResult, One),
             (IdRef, One),
-            (IdRef, One),
             (LiteralInteger, One),
             (LiteralInteger, One),
             (LiteralInteger, One),
@@ -7185,7 +7277,6 @@ static INSTRUCTION_TABLE: &[Instruction<'static>] = &[
         [
             (IdResultType, One),
             (IdResult, One),
-            (IdRef, One),
             (IdRef, One),
             (LiteralInteger, One),
             (LiteralInteger, One),
@@ -7202,7 +7293,6 @@ static INSTRUCTION_TABLE: &[Instruction<'static>] = &[
             (IdResultType, One),
             (IdResult, One),
             (IdRef, One),
-            (IdRef, One),
             (LiteralInteger, One),
             (LiteralInteger, One),
             (LiteralInteger, One),
@@ -7217,7 +7307,6 @@ static INSTRUCTION_TABLE: &[Instruction<'static>] = &[
         [
             (IdResultType, One),
             (IdResult, One),
-            (IdRef, One),
             (IdRef, One),
             (LiteralInteger, One),
             (LiteralInteger, One),
@@ -7234,7 +7323,6 @@ static INSTRUCTION_TABLE: &[Instruction<'static>] = &[
             (IdResultType, One),
             (IdResult, One),
             (IdRef, One),
-            (IdRef, One),
             (LiteralInteger, One),
             (LiteralInteger, One),
             (LiteralInteger, One),
@@ -7249,7 +7337,6 @@ static INSTRUCTION_TABLE: &[Instruction<'static>] = &[
         [
             (IdResultType, One),
             (IdResult, One),
-            (IdRef, One),
             (IdRef, One),
             (LiteralInteger, One),
             (LiteralInteger, One),
@@ -7266,7 +7353,6 @@ static INSTRUCTION_TABLE: &[Instruction<'static>] = &[
             (IdResultType, One),
             (IdResult, One),
             (IdRef, One),
-            (IdRef, One),
             (LiteralInteger, One),
             (LiteralInteger, One),
             (LiteralInteger, One),
@@ -7282,7 +7368,6 @@ static INSTRUCTION_TABLE: &[Instruction<'static>] = &[
             (IdResultType, One),
             (IdResult, One),
             (IdRef, One),
-            (IdRef, One),
             (LiteralInteger, One),
             (LiteralInteger, One),
             (LiteralInteger, One),
@@ -7297,7 +7382,6 @@ static INSTRUCTION_TABLE: &[Instruction<'static>] = &[
         [
             (IdResultType, One),
             (IdResult, One),
-            (IdRef, One),
             (IdRef, One),
             (LiteralInteger, One),
             (LiteralInteger, One),
@@ -7344,12 +7428,7 @@ static INSTRUCTION_TABLE: &[Instruction<'static>] = &[
         FPGARegINTEL,
         [FPGARegINTEL],
         ["SPV_INTEL_fpga_reg"],
-        [
-            (IdResultType, One),
-            (IdResult, One),
-            (IdRef, One),
-            (IdRef, One)
-        ]
+        [(IdResultType, One), (IdResult, One), (IdRef, One)]
     ),
     inst!(
         RayQueryGetRayTMinKHR,
@@ -7592,6 +7671,44 @@ static INSTRUCTION_TABLE: &[Instruction<'static>] = &[
         [(IdResultType, One), (IdResult, One), (IdRef, One)]
     ),
     inst!(
+        TaskSequenceCreateINTEL,
+        [TaskSequenceINTEL],
+        [],
+        [
+            (IdResultType, One),
+            (IdResult, One),
+            (IdRef, One),
+            (LiteralInteger, One),
+            (LiteralInteger, One),
+            (LiteralInteger, One),
+            (LiteralInteger, One)
+        ]
+    ),
+    inst!(
+        TaskSequenceAsyncINTEL,
+        [TaskSequenceINTEL],
+        [],
+        [(IdRef, One), (IdRef, ZeroOrMore)]
+    ),
+    inst!(
+        TaskSequenceGetINTEL,
+        [TaskSequenceINTEL],
+        [],
+        [(IdResultType, One), (IdResult, One), (IdRef, One)]
+    ),
+    inst!(
+        TaskSequenceReleaseINTEL,
+        [TaskSequenceINTEL],
+        [],
+        [(IdRef, One)]
+    ),
+    inst!(
+        TypeTaskSequenceINTEL,
+        [TaskSequenceINTEL],
+        [],
+        [(IdResult, One)]
+    ),
+    inst!(
         SubgroupBlockPrefetchINTEL,
         [SubgroupBufferPrefetchINTEL],
         [],
@@ -7696,6 +7813,19 @@ static INSTRUCTION_TABLE: &[Instruction<'static>] = &[
         ]
     ),
     inst!(
+        BitwiseFunctionINTEL,
+        [TernaryBitwiseFunctionINTEL],
+        [],
+        [
+            (IdResultType, One),
+            (IdResult, One),
+            (IdRef, One),
+            (IdRef, One),
+            (IdRef, One),
+            (IdRef, One)
+        ]
+    ),
+    inst!(
         GroupIMulKHR,
         [GroupUniformArithmeticKHR],
         [],
@@ -7792,6 +7922,12 @@ static INSTRUCTION_TABLE: &[Instruction<'static>] = &[
         ]
     ),
     inst!(
+        RoundFToTF32INTEL,
+        [TensorFloat32RoundingINTEL],
+        [],
+        [(IdResultType, One), (IdResult, One), (IdRef, One)]
+    ),
+    inst!(
         MaskedGatherINTEL,
         [MaskedGatherScatterINTEL],
         [],
@@ -7814,5 +7950,23 @@ static INSTRUCTION_TABLE: &[Instruction<'static>] = &[
             (LiteralInteger, One),
             (IdRef, One)
         ]
+    ),
+    inst!(
+        ConvertHandleToImageINTEL,
+        [BindlessImagesINTEL],
+        [],
+        [(IdResultType, One), (IdResult, One), (IdRef, One)]
+    ),
+    inst!(
+        ConvertHandleToSamplerINTEL,
+        [BindlessImagesINTEL],
+        [],
+        [(IdResultType, One), (IdResult, One), (IdRef, One)]
+    ),
+    inst!(
+        ConvertHandleToSampledImageINTEL,
+        [BindlessImagesINTEL],
+        [],
+        [(IdResultType, One), (IdResult, One), (IdRef, One)]
     ),
 ];

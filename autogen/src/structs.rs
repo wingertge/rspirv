@@ -154,6 +154,8 @@ pub enum Class {
     DeviceSideEnqueue,
     #[serde(rename = "Non-Uniform")]
     NonUniform,
+    Tensor,
+    Graph,
     Reserved,
     #[serde(rename = "@exclude")]
     Exclude,

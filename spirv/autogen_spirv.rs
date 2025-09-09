@@ -278,6 +278,8 @@ pub enum ExecutionMode {
     SignedZeroInfNanPreserve = 4461u32,
     RoundingModeRTE = 4462u32,
     RoundingModeRTZ = 4463u32,
+    NonCoherentTileAttachmentReadQCOM = 4489u32,
+    TileShadingRateQCOM = 4490u32,
     EarlyAndLateFragmentTestsAMD = 5017u32,
     StencilRefReplacingEXT = 5027u32,
     CoalescingAMDX = 5069u32,
@@ -335,6 +337,7 @@ impl ExecutionMode {
             4421u32 => unsafe { core::mem::transmute::<u32, ExecutionMode>(4421u32) },
             4446u32 => unsafe { core::mem::transmute::<u32, ExecutionMode>(4446u32) },
             4459u32..=4463u32 => unsafe { core::mem::transmute::<u32, ExecutionMode>(n) },
+            4489u32..=4490u32 => unsafe { core::mem::transmute::<u32, ExecutionMode>(n) },
             5017u32 => unsafe { core::mem::transmute::<u32, ExecutionMode>(5017u32) },
             5027u32 => unsafe { core::mem::transmute::<u32, ExecutionMode>(5027u32) },
             5069u32..=5073u32 => unsafe { core::mem::transmute::<u32, ExecutionMode>(n) },
@@ -420,6 +423,8 @@ impl core::str::FromStr for ExecutionMode {
             "SignedZeroInfNanPreserve" => Self::SignedZeroInfNanPreserve,
             "RoundingModeRTE" => Self::RoundingModeRTE,
             "RoundingModeRTZ" => Self::RoundingModeRTZ,
+            "NonCoherentTileAttachmentReadQCOM" => Self::NonCoherentTileAttachmentReadQCOM,
+            "TileShadingRateQCOM" => Self::TileShadingRateQCOM,
             "EarlyAndLateFragmentTestsAMD" => Self::EarlyAndLateFragmentTestsAMD,
             "StencilRefReplacingEXT" => Self::StencilRefReplacingEXT,
             "CoalescingAMDX" => Self::CoalescingAMDX,
@@ -496,6 +501,7 @@ pub enum StorageClass {
     Image = 11u32,
     StorageBuffer = 12u32,
     TileImageEXT = 4172u32,
+    TileAttachmentQCOM = 4491u32,
     NodePayloadAMDX = 5068u32,
     CallableDataKHR = 5328u32,
     IncomingCallableDataKHR = 5329u32,
@@ -515,6 +521,7 @@ impl StorageClass {
         Some(match n {
             0u32..=12u32 => unsafe { core::mem::transmute::<u32, StorageClass>(n) },
             4172u32 => unsafe { core::mem::transmute::<u32, StorageClass>(4172u32) },
+            4491u32 => unsafe { core::mem::transmute::<u32, StorageClass>(4491u32) },
             5068u32 => unsafe { core::mem::transmute::<u32, StorageClass>(5068u32) },
             5328u32..=5329u32 => unsafe { core::mem::transmute::<u32, StorageClass>(n) },
             5338u32..=5339u32 => unsafe { core::mem::transmute::<u32, StorageClass>(n) },
@@ -556,6 +563,7 @@ impl core::str::FromStr for StorageClass {
             "Image" => Self::Image,
             "StorageBuffer" => Self::StorageBuffer,
             "TileImageEXT" => Self::TileImageEXT,
+            "TileAttachmentQCOM" => Self::TileAttachmentQCOM,
             "NodePayloadAMDX" => Self::NodePayloadAMDX,
             "CallableDataKHR" => Self::CallableDataKHR,
             "CallableDataNV" => Self::CallableDataKHR,
@@ -889,15 +897,21 @@ pub enum ImageChannelDataType {
     Float = 14u32,
     UnormInt24 = 15u32,
     UnormInt101010_2 = 16u32,
+    UnormInt10X6EXT = 17u32,
     UnsignedIntRaw10EXT = 19u32,
     UnsignedIntRaw12EXT = 20u32,
     UnormInt2_101010EXT = 21u32,
+    UnsignedInt10X6EXT = 22u32,
+    UnsignedInt12X4EXT = 23u32,
+    UnsignedInt14X2EXT = 24u32,
+    UnormInt12X4EXT = 25u32,
+    UnormInt14X2EXT = 26u32,
 }
 impl ImageChannelDataType {
     pub fn from_u32(n: u32) -> Option<Self> {
         Some(match n {
-            0u32..=16u32 => unsafe { core::mem::transmute::<u32, ImageChannelDataType>(n) },
-            19u32..=21u32 => unsafe { core::mem::transmute::<u32, ImageChannelDataType>(n) },
+            0u32..=17u32 => unsafe { core::mem::transmute::<u32, ImageChannelDataType>(n) },
+            19u32..=26u32 => unsafe { core::mem::transmute::<u32, ImageChannelDataType>(n) },
             _ => return None,
         })
     }
@@ -925,9 +939,15 @@ impl core::str::FromStr for ImageChannelDataType {
             "Float" => Self::Float,
             "UnormInt24" => Self::UnormInt24,
             "UnormInt101010_2" => Self::UnormInt101010_2,
+            "UnormInt10X6EXT" => Self::UnormInt10X6EXT,
             "UnsignedIntRaw10EXT" => Self::UnsignedIntRaw10EXT,
             "UnsignedIntRaw12EXT" => Self::UnsignedIntRaw12EXT,
             "UnormInt2_101010EXT" => Self::UnormInt2_101010EXT,
+            "UnsignedInt10X6EXT" => Self::UnsignedInt10X6EXT,
+            "UnsignedInt12X4EXT" => Self::UnsignedInt12X4EXT,
+            "UnsignedInt14X2EXT" => Self::UnsignedInt14X2EXT,
+            "UnormInt12X4EXT" => Self::UnormInt12X4EXT,
+            "UnormInt14X2EXT" => Self::UnormInt14X2EXT,
             _ => return Err(()),
         })
     }
@@ -1299,6 +1319,7 @@ pub enum Decoration {
     MaxByteOffset = 45u32,
     AlignmentId = 46u32,
     MaxByteOffsetId = 47u32,
+    SaturatedToLargestFloat8NormalConversionEXT = 4216u32,
     NoSignedWrap = 4469u32,
     NoUnsignedWrap = 4470u32,
     WeightTextureQCOM = 4487u32,
@@ -1400,6 +1421,7 @@ impl Decoration {
         Some(match n {
             0u32..=11u32 => unsafe { core::mem::transmute::<u32, Decoration>(n) },
             13u32..=47u32 => unsafe { core::mem::transmute::<u32, Decoration>(n) },
+            4216u32 => unsafe { core::mem::transmute::<u32, Decoration>(4216u32) },
             4469u32..=4470u32 => unsafe { core::mem::transmute::<u32, Decoration>(n) },
             4487u32..=4488u32 => unsafe { core::mem::transmute::<u32, Decoration>(n) },
             4499u32 => unsafe { core::mem::transmute::<u32, Decoration>(4499u32) },
@@ -1511,6 +1533,9 @@ impl core::str::FromStr for Decoration {
             "MaxByteOffset" => Self::MaxByteOffset,
             "AlignmentId" => Self::AlignmentId,
             "MaxByteOffsetId" => Self::MaxByteOffsetId,
+            "SaturatedToLargestFloat8NormalConversionEXT" => {
+                Self::SaturatedToLargestFloat8NormalConversionEXT
+            }
             "NoSignedWrap" => Self::NoSignedWrap,
             "NoUnsignedWrap" => Self::NoUnsignedWrap,
             "WeightTextureQCOM" => Self::WeightTextureQCOM,
@@ -1682,6 +1707,9 @@ pub enum BuiltIn {
     DeviceIndex = 4438u32,
     ViewIndex = 4440u32,
     ShadingRateKHR = 4444u32,
+    TileOffsetQCOM = 4492u32,
+    TileDimensionQCOM = 4493u32,
+    TileApronSizeQCOM = 4494u32,
     BaryCoordNoPerspAMD = 4992u32,
     BaryCoordNoPerspCentroidAMD = 4993u32,
     BaryCoordNoPerspSampleAMD = 4994u32,
@@ -1762,6 +1790,7 @@ impl BuiltIn {
             4438u32 => unsafe { core::mem::transmute::<u32, BuiltIn>(4438u32) },
             4440u32 => unsafe { core::mem::transmute::<u32, BuiltIn>(4440u32) },
             4444u32 => unsafe { core::mem::transmute::<u32, BuiltIn>(4444u32) },
+            4492u32..=4494u32 => unsafe { core::mem::transmute::<u32, BuiltIn>(n) },
             4992u32..=4998u32 => unsafe { core::mem::transmute::<u32, BuiltIn>(n) },
             5014u32 => unsafe { core::mem::transmute::<u32, BuiltIn>(5014u32) },
             5021u32 => unsafe { core::mem::transmute::<u32, BuiltIn>(5021u32) },
@@ -1882,6 +1911,9 @@ impl core::str::FromStr for BuiltIn {
             "DeviceIndex" => Self::DeviceIndex,
             "ViewIndex" => Self::ViewIndex,
             "ShadingRateKHR" => Self::ShadingRateKHR,
+            "TileOffsetQCOM" => Self::TileOffsetQCOM,
+            "TileDimensionQCOM" => Self::TileDimensionQCOM,
+            "TileApronSizeQCOM" => Self::TileApronSizeQCOM,
             "BaryCoordNoPerspAMD" => Self::BaryCoordNoPerspAMD,
             "BaryCoordNoPerspCentroidAMD" => Self::BaryCoordNoPerspCentroidAMD,
             "BaryCoordNoPerspSampleAMD" => Self::BaryCoordNoPerspSampleAMD,
@@ -2165,7 +2197,13 @@ pub enum Capability {
     TileImageColorReadAccessEXT = 4166u32,
     TileImageDepthReadAccessEXT = 4167u32,
     TileImageStencilReadAccessEXT = 4168u32,
+    TensorsARM = 4174u32,
+    StorageTensorArrayDynamicIndexingARM = 4175u32,
+    StorageTensorArrayNonUniformIndexingARM = 4176u32,
+    GraphARM = 4191u32,
     CooperativeMatrixLayoutsARM = 4201u32,
+    Float8EXT = 4212u32,
+    Float8CooperativeMatrixEXT = 4213u32,
     FragmentShadingRateKHR = 4422u32,
     SubgroupBallotKHR = 4423u32,
     DrawParameters = 4427u32,
@@ -2199,6 +2237,7 @@ pub enum Capability {
     TextureSampleWeightedQCOM = 4484u32,
     TextureBoxFilterQCOM = 4485u32,
     TextureBlockMatchQCOM = 4486u32,
+    TileShadingQCOM = 4495u32,
     TextureBlockMatch2QCOM = 4498u32,
     Float16ImageAMD = 5008u32,
     ImageGatherBiasLodAMD = 5009u32,
@@ -2209,6 +2248,11 @@ pub enum Capability {
     ShaderClockKHR = 5055u32,
     ShaderEnqueueAMDX = 5067u32,
     QuadControlKHR = 5087u32,
+    Int4TypeINTEL = 5112u32,
+    Int4CooperativeMatrixINTEL = 5114u32,
+    BFloat16TypeKHR = 5116u32,
+    BFloat16DotProductKHR = 5117u32,
+    BFloat16CooperativeMatrixKHR = 5118u32,
     SampleMaskOverrideCoverageNV = 5249u32,
     GeometryShaderPassthroughNV = 5251u32,
     ShaderViewportIndexLayerEXT = 5254u32,
@@ -2331,6 +2375,7 @@ pub enum Capability {
     ArithmeticFenceEXT = 6144u32,
     FPGAClusterAttributesV2INTEL = 6150u32,
     FPGAKernelAttributesv2INTEL = 6161u32,
+    TaskSequenceINTEL = 6162u32,
     FPMaxErrorINTEL = 6169u32,
     FPGALatencyControlINTEL = 6171u32,
     FPGAArgumentInterfacesINTEL = 6174u32,
@@ -2341,10 +2386,13 @@ pub enum Capability {
     Subgroup2DBlockTransformINTEL = 6229u32,
     Subgroup2DBlockTransposeINTEL = 6230u32,
     SubgroupMatrixMultiplyAccumulateINTEL = 6236u32,
+    TernaryBitwiseFunctionINTEL = 6241u32,
     GroupUniformArithmeticKHR = 6400u32,
+    TensorFloat32RoundingINTEL = 6425u32,
     MaskedGatherScatterINTEL = 6427u32,
     CacheControlsINTEL = 6441u32,
     RegisterLimitsINTEL = 6460u32,
+    BindlessImagesINTEL = 6528u32,
 }
 impl Capability {
     pub fn from_u32(n: u32) -> Option<Self> {
@@ -2353,7 +2401,10 @@ impl Capability {
             17u32..=25u32 => unsafe { core::mem::transmute::<u32, Capability>(n) },
             27u32..=71u32 => unsafe { core::mem::transmute::<u32, Capability>(n) },
             4165u32..=4168u32 => unsafe { core::mem::transmute::<u32, Capability>(n) },
+            4174u32..=4176u32 => unsafe { core::mem::transmute::<u32, Capability>(n) },
+            4191u32 => unsafe { core::mem::transmute::<u32, Capability>(4191u32) },
             4201u32 => unsafe { core::mem::transmute::<u32, Capability>(4201u32) },
+            4212u32..=4213u32 => unsafe { core::mem::transmute::<u32, Capability>(n) },
             4422u32..=4423u32 => unsafe { core::mem::transmute::<u32, Capability>(n) },
             4427u32..=4431u32 => unsafe { core::mem::transmute::<u32, Capability>(n) },
             4433u32..=4437u32 => unsafe { core::mem::transmute::<u32, Capability>(n) },
@@ -2365,6 +2416,7 @@ impl Capability {
             4471u32..=4473u32 => unsafe { core::mem::transmute::<u32, Capability>(n) },
             4478u32..=4479u32 => unsafe { core::mem::transmute::<u32, Capability>(n) },
             4484u32..=4486u32 => unsafe { core::mem::transmute::<u32, Capability>(n) },
+            4495u32 => unsafe { core::mem::transmute::<u32, Capability>(4495u32) },
             4498u32 => unsafe { core::mem::transmute::<u32, Capability>(4498u32) },
             5008u32..=5010u32 => unsafe { core::mem::transmute::<u32, Capability>(n) },
             5013u32 => unsafe { core::mem::transmute::<u32, Capability>(5013u32) },
@@ -2372,6 +2424,9 @@ impl Capability {
             5055u32 => unsafe { core::mem::transmute::<u32, Capability>(5055u32) },
             5067u32 => unsafe { core::mem::transmute::<u32, Capability>(5067u32) },
             5087u32 => unsafe { core::mem::transmute::<u32, Capability>(5087u32) },
+            5112u32 => unsafe { core::mem::transmute::<u32, Capability>(5112u32) },
+            5114u32 => unsafe { core::mem::transmute::<u32, Capability>(5114u32) },
+            5116u32..=5118u32 => unsafe { core::mem::transmute::<u32, Capability>(n) },
             5249u32 => unsafe { core::mem::transmute::<u32, Capability>(5249u32) },
             5251u32 => unsafe { core::mem::transmute::<u32, Capability>(5251u32) },
             5254u32..=5255u32 => unsafe { core::mem::transmute::<u32, Capability>(n) },
@@ -2443,7 +2498,7 @@ impl Capability {
             6141u32 => unsafe { core::mem::transmute::<u32, Capability>(6141u32) },
             6144u32 => unsafe { core::mem::transmute::<u32, Capability>(6144u32) },
             6150u32 => unsafe { core::mem::transmute::<u32, Capability>(6150u32) },
-            6161u32 => unsafe { core::mem::transmute::<u32, Capability>(6161u32) },
+            6161u32..=6162u32 => unsafe { core::mem::transmute::<u32, Capability>(n) },
             6169u32 => unsafe { core::mem::transmute::<u32, Capability>(6169u32) },
             6171u32 => unsafe { core::mem::transmute::<u32, Capability>(6171u32) },
             6174u32 => unsafe { core::mem::transmute::<u32, Capability>(6174u32) },
@@ -2452,10 +2507,13 @@ impl Capability {
             6220u32 => unsafe { core::mem::transmute::<u32, Capability>(6220u32) },
             6228u32..=6230u32 => unsafe { core::mem::transmute::<u32, Capability>(n) },
             6236u32 => unsafe { core::mem::transmute::<u32, Capability>(6236u32) },
+            6241u32 => unsafe { core::mem::transmute::<u32, Capability>(6241u32) },
             6400u32 => unsafe { core::mem::transmute::<u32, Capability>(6400u32) },
+            6425u32 => unsafe { core::mem::transmute::<u32, Capability>(6425u32) },
             6427u32 => unsafe { core::mem::transmute::<u32, Capability>(6427u32) },
             6441u32 => unsafe { core::mem::transmute::<u32, Capability>(6441u32) },
             6460u32 => unsafe { core::mem::transmute::<u32, Capability>(6460u32) },
+            6528u32 => unsafe { core::mem::transmute::<u32, Capability>(6528u32) },
             _ => return None,
         })
     }
@@ -2579,7 +2637,15 @@ impl core::str::FromStr for Capability {
             "TileImageColorReadAccessEXT" => Self::TileImageColorReadAccessEXT,
             "TileImageDepthReadAccessEXT" => Self::TileImageDepthReadAccessEXT,
             "TileImageStencilReadAccessEXT" => Self::TileImageStencilReadAccessEXT,
+            "TensorsARM" => Self::TensorsARM,
+            "StorageTensorArrayDynamicIndexingARM" => Self::StorageTensorArrayDynamicIndexingARM,
+            "StorageTensorArrayNonUniformIndexingARM" => {
+                Self::StorageTensorArrayNonUniformIndexingARM
+            }
+            "GraphARM" => Self::GraphARM,
             "CooperativeMatrixLayoutsARM" => Self::CooperativeMatrixLayoutsARM,
+            "Float8EXT" => Self::Float8EXT,
+            "Float8CooperativeMatrixEXT" => Self::Float8CooperativeMatrixEXT,
             "FragmentShadingRateKHR" => Self::FragmentShadingRateKHR,
             "SubgroupBallotKHR" => Self::SubgroupBallotKHR,
             "DrawParameters" => Self::DrawParameters,
@@ -2619,6 +2685,7 @@ impl core::str::FromStr for Capability {
             "TextureSampleWeightedQCOM" => Self::TextureSampleWeightedQCOM,
             "TextureBoxFilterQCOM" => Self::TextureBoxFilterQCOM,
             "TextureBlockMatchQCOM" => Self::TextureBlockMatchQCOM,
+            "TileShadingQCOM" => Self::TileShadingQCOM,
             "TextureBlockMatch2QCOM" => Self::TextureBlockMatch2QCOM,
             "Float16ImageAMD" => Self::Float16ImageAMD,
             "ImageGatherBiasLodAMD" => Self::ImageGatherBiasLodAMD,
@@ -2629,6 +2696,11 @@ impl core::str::FromStr for Capability {
             "ShaderClockKHR" => Self::ShaderClockKHR,
             "ShaderEnqueueAMDX" => Self::ShaderEnqueueAMDX,
             "QuadControlKHR" => Self::QuadControlKHR,
+            "Int4TypeINTEL" => Self::Int4TypeINTEL,
+            "Int4CooperativeMatrixINTEL" => Self::Int4CooperativeMatrixINTEL,
+            "BFloat16TypeKHR" => Self::BFloat16TypeKHR,
+            "BFloat16DotProductKHR" => Self::BFloat16DotProductKHR,
+            "BFloat16CooperativeMatrixKHR" => Self::BFloat16CooperativeMatrixKHR,
             "SampleMaskOverrideCoverageNV" => Self::SampleMaskOverrideCoverageNV,
             "GeometryShaderPassthroughNV" => Self::GeometryShaderPassthroughNV,
             "ShaderViewportIndexLayerEXT" => Self::ShaderViewportIndexLayerEXT,
@@ -2807,6 +2879,7 @@ impl core::str::FromStr for Capability {
             "ArithmeticFenceEXT" => Self::ArithmeticFenceEXT,
             "FPGAClusterAttributesV2INTEL" => Self::FPGAClusterAttributesV2INTEL,
             "FPGAKernelAttributesv2INTEL" => Self::FPGAKernelAttributesv2INTEL,
+            "TaskSequenceINTEL" => Self::TaskSequenceINTEL,
             "FPMaxErrorINTEL" => Self::FPMaxErrorINTEL,
             "FPGALatencyControlINTEL" => Self::FPGALatencyControlINTEL,
             "FPGAArgumentInterfacesINTEL" => Self::FPGAArgumentInterfacesINTEL,
@@ -2817,10 +2890,13 @@ impl core::str::FromStr for Capability {
             "Subgroup2DBlockTransformINTEL" => Self::Subgroup2DBlockTransformINTEL,
             "Subgroup2DBlockTransposeINTEL" => Self::Subgroup2DBlockTransposeINTEL,
             "SubgroupMatrixMultiplyAccumulateINTEL" => Self::SubgroupMatrixMultiplyAccumulateINTEL,
+            "TernaryBitwiseFunctionINTEL" => Self::TernaryBitwiseFunctionINTEL,
             "GroupUniformArithmeticKHR" => Self::GroupUniformArithmeticKHR,
+            "TensorFloat32RoundingINTEL" => Self::TensorFloat32RoundingINTEL,
             "MaskedGatherScatterINTEL" => Self::MaskedGatherScatterINTEL,
             "CacheControlsINTEL" => Self::CacheControlsINTEL,
             "RegisterLimitsINTEL" => Self::RegisterLimitsINTEL,
+            "BindlessImagesINTEL" => Self::BindlessImagesINTEL,
             _ => return Err(()),
         })
     }
@@ -3200,12 +3276,15 @@ bitflags! { # [doc = "SPIR-V operand kind: [MatrixMultiplyAccumulateOperands](ht
 #[cfg_attr(feature = "deserialize", derive(serde::Deserialize))]
 #[allow(clippy::upper_case_acronyms)]
 pub enum FPEncoding {
-    Max = 0x7fffffff,
+    BFloat16KHR = 0u32,
+    Float8E4M3EXT = 4214u32,
+    Float8E5M2EXT = 4215u32,
 }
 impl FPEncoding {
     pub fn from_u32(n: u32) -> Option<Self> {
         Some(match n {
-            0x7fffffff => Self::Max,
+            0u32 => unsafe { core::mem::transmute::<u32, FPEncoding>(0u32) },
+            4214u32..=4215u32 => unsafe { core::mem::transmute::<u32, FPEncoding>(n) },
             _ => return None,
         })
     }
@@ -3216,7 +3295,9 @@ impl core::str::FromStr for FPEncoding {
     type Err = ();
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         Ok(match s {
-            "Max" => Self::Max,
+            "BFloat16KHR" => Self::BFloat16KHR,
+            "Float8E4M3EXT" => Self::Float8E4M3EXT,
+            "Float8E5M2EXT" => Self::Float8E5M2EXT,
             _ => return Err(()),
         })
     }
@@ -3314,6 +3395,7 @@ impl core::str::FromStr for ComponentType {
         })
     }
 }
+bitflags! { # [doc = "SPIR-V operand kind: [TensorOperands](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_tensor_operands_a_tensor_operands)"] # [derive (Clone , Copy , Debug , PartialEq , Eq , Hash)] # [cfg_attr (feature = "serialize" , derive (serde :: Serialize))] # [cfg_attr (feature = "deserialize" , derive (serde :: Deserialize))] pub struct TensorOperands : u32 { const NONE_ARM = 0u32 ; const NONTEMPORAL_ARM = 1u32 ; const OUT_OF_BOUNDS_VALUE_ARM = 2u32 ; const MAKE_ELEMENT_AVAILABLE_ARM = 4u32 ; const MAKE_ELEMENT_VISIBLE_ARM = 8u32 ; const NON_PRIVATE_ELEMENT_ARM = 16u32 ; } }
 #[doc = "SPIR-V [instructions](https://www.khronos.org/registry/spir-v/specs/unified1/SPIRV.html#_a_id_instructions_a_instructions) opcodes"]
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -3668,6 +3750,17 @@ pub enum Op {
     ColorAttachmentReadEXT = 4160u32,
     DepthAttachmentReadEXT = 4161u32,
     StencilAttachmentReadEXT = 4162u32,
+    TypeTensorARM = 4163u32,
+    TensorReadARM = 4164u32,
+    TensorWriteARM = 4165u32,
+    TensorQuerySizeARM = 4166u32,
+    GraphConstantARM = 4181u32,
+    GraphEntryPointARM = 4182u32,
+    GraphARM = 4183u32,
+    GraphInputARM = 4184u32,
+    GraphSetOutputARM = 4185u32,
+    GraphEndARM = 4186u32,
+    TypeGraphARM = 4190u32,
     TerminateInvocation = 4416u32,
     TypeUntypedPointerKHR = 4417u32,
     UntypedVariableKHR = 4418u32,
@@ -4091,6 +4184,11 @@ pub enum Op {
     ControlBarrierArriveINTEL = 6142u32,
     ControlBarrierWaitINTEL = 6143u32,
     ArithmeticFenceEXT = 6145u32,
+    TaskSequenceCreateINTEL = 6163u32,
+    TaskSequenceAsyncINTEL = 6164u32,
+    TaskSequenceGetINTEL = 6165u32,
+    TaskSequenceReleaseINTEL = 6166u32,
+    TypeTaskSequenceINTEL = 6199u32,
     SubgroupBlockPrefetchINTEL = 6221u32,
     Subgroup2DBlockLoadINTEL = 6231u32,
     Subgroup2DBlockLoadTransformINTEL = 6232u32,
@@ -4098,6 +4196,7 @@ pub enum Op {
     Subgroup2DBlockPrefetchINTEL = 6234u32,
     Subgroup2DBlockStoreINTEL = 6235u32,
     SubgroupMatrixMultiplyAccumulateINTEL = 6237u32,
+    BitwiseFunctionINTEL = 6242u32,
     GroupIMulKHR = 6401u32,
     GroupFMulKHR = 6402u32,
     GroupBitwiseAndKHR = 6403u32,
@@ -4106,8 +4205,12 @@ pub enum Op {
     GroupLogicalAndKHR = 6406u32,
     GroupLogicalOrKHR = 6407u32,
     GroupLogicalXorKHR = 6408u32,
+    RoundFToTF32INTEL = 6426u32,
     MaskedGatherINTEL = 6428u32,
     MaskedScatterINTEL = 6429u32,
+    ConvertHandleToImageINTEL = 6529u32,
+    ConvertHandleToSamplerINTEL = 6530u32,
+    ConvertHandleToSampledImageINTEL = 6531u32,
 }
 impl Op {
     pub fn from_u32(n: u32) -> Option<Self> {
@@ -4135,7 +4238,9 @@ impl Op {
             274u32..=288u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
             291u32..=366u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
             400u32..=403u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
-            4160u32..=4162u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
+            4160u32..=4166u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
+            4181u32..=4186u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
+            4190u32 => unsafe { core::mem::transmute::<u32, Op>(4190u32) },
             4416u32..=4426u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
             4428u32..=4433u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
             4445u32..=4463u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
@@ -4187,11 +4292,16 @@ impl Op {
             6116u32..=6117u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
             6142u32..=6143u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
             6145u32 => unsafe { core::mem::transmute::<u32, Op>(6145u32) },
+            6163u32..=6166u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
+            6199u32 => unsafe { core::mem::transmute::<u32, Op>(6199u32) },
             6221u32 => unsafe { core::mem::transmute::<u32, Op>(6221u32) },
             6231u32..=6235u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
             6237u32 => unsafe { core::mem::transmute::<u32, Op>(6237u32) },
+            6242u32 => unsafe { core::mem::transmute::<u32, Op>(6242u32) },
             6401u32..=6408u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
+            6426u32 => unsafe { core::mem::transmute::<u32, Op>(6426u32) },
             6428u32..=6429u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
+            6529u32..=6531u32 => unsafe { core::mem::transmute::<u32, Op>(n) },
             _ => return None,
         })
     }
