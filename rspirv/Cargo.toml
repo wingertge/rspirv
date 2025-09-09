@@ -16,7 +16,7 @@ path = "lib.rs"
 
 [dependencies]
 rustc-hash = "2.1.0"
-tracel-spirv = { version = "0.3.0", path = "../spirv" }
+spirv = { version = "0.3.0", path = "../spirv", package = "tracel-spirv" }
 
 [dev-dependencies]
 assert_matches = "1.1"
